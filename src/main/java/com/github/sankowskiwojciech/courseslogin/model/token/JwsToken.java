@@ -1,10 +1,12 @@
 package com.github.sankowskiwojciech.courseslogin.model.token;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class Token {
+@EqualsAndHashCode
+public class JwsToken {
     private final String token;
 }

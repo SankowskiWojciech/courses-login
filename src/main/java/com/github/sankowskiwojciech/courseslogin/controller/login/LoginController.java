@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.controller.login;
 
-import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
 import com.github.sankowskiwojciech.courseslogin.model.user.UserCredentials;
 import com.github.sankowskiwojciech.courseslogin.service.login.LoginService;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @PostMapping("/login")
-    public Token login(@RequestBody UserCredentials userCredentials) {
+    public JwsToken login(@RequestBody UserCredentials userCredentials) {
         return loginService.loginUser(userCredentials);
     }
 }
