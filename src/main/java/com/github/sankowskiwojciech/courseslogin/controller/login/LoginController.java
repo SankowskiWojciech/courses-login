@@ -4,6 +4,7 @@ import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
 import com.github.sankowskiwojciech.courseslogin.model.user.UserCredentials;
 import com.github.sankowskiwojciech.courseslogin.service.login.LoginService;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +15,7 @@ public class LoginController {
 
     private final LoginService loginService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/login")
     public JwsToken login(@RequestBody UserCredentials userCredentials) {
         return loginService.loginUser(userCredentials);
