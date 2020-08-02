@@ -18,13 +18,13 @@ public class EmailAddressAndRsaPublicKeyToTokenEntity implements BiFunction<Stri
 
     @Override
     public TokenEntity apply(String emailAddress, byte[] rsaPublicKey) {
-        LocalDateTime creattionDateTime = LocalDateTime.now();
+        LocalDateTime creationDateTime = LocalDateTime.now();
         return TokenEntity.builder()
                 .id(UUID.randomUUID().toString())
                 .emailAddress(emailAddress)
                 .rsaPublicKey(Base64.getEncoder().encodeToString(rsaPublicKey))
-                .creationDateTime(creattionDateTime)
-                .expirationDateTime(creattionDateTime.plusHours(DEFAULT_TOKEN_VALIDITY_TIME_IN_HOURS))
+                .creationDateTime(creationDateTime)
+                .expirationDateTime(creationDateTime.plusHours(DEFAULT_TOKEN_VALIDITY_TIME_IN_HOURS))
                 .build();
     }
 
