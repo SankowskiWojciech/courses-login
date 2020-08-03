@@ -1,7 +1,12 @@
 package com.github.sankowskiwojciech.courseslogin.service.subdomain;
 
 import com.github.sankowskiwojciech.courseslogin.backend.repository.OrganizationRepository;
+import com.github.sankowskiwojciech.courseslogin.backend.repository.OrganizationStudentRelationRepository;
+import com.github.sankowskiwojciech.courseslogin.backend.repository.OrganizationTutorRelationRepository;
+import com.github.sankowskiwojciech.courseslogin.backend.repository.StudentRepository;
 import com.github.sankowskiwojciech.courseslogin.backend.repository.TutorRepository;
+import com.github.sankowskiwojciech.courseslogin.backend.repository.TutorStudentRelationRepository;
+import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.organization.OrganizationEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.SubdomainNotFoundException;
@@ -19,6 +24,10 @@ public class SubdomainServiceImpl implements SubdomainService {
 
     private final OrganizationRepository organizationRepository;
     private final TutorRepository tutorRepository;
+    private final StudentRepository studentRepository;
+    private final OrganizationStudentRelationRepository organizationStudentRelationRepository;
+    private final OrganizationTutorRelationRepository organizationTutorRelationRepository;
+    private final TutorStudentRelationRepository tutorStudentRelationRepository;
 
     @Override
     public Subdomain readSubdomainIfExists(String subdomainName) {
@@ -31,5 +40,10 @@ public class SubdomainServiceImpl implements SubdomainService {
             return TutorEntityToSubdomain.getInstance().apply(tutorEntity.get());
         }
         throw new SubdomainNotFoundException();
+    }
+
+    @Override
+    public boolean validateIfUserIsAllowedToLoginToSubdomain(Subdomain subdomain, LoginCredentialsEntity loginCredentialsEntity) {
+        return false;
     }
 }
