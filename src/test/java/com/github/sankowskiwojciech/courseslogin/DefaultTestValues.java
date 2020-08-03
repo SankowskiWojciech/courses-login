@@ -20,6 +20,12 @@ public interface DefaultTestValues {
     String TUTOR_EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
     String TUTOR_PHONE_NUMBER_STUB = "111222333";
 
+    //student
+    long STUDENT_ID_STUB = 1;
+
+    //parent
+    long PARENT_ID_STUB = 1;
+
     String EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
     String PASSWORD_STUB = "password";
     String TOKEN_VALUE_STUB = "tokenValue";

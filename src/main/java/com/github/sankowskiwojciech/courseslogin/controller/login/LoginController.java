@@ -25,6 +25,6 @@ public class LoginController {
     public JwsToken login(@PathVariable("subdomainName") String subdomainName, @RequestBody LoginCredentials loginCredentials) {
         LoginCredentialsValidator.validateLoginCredentials(loginCredentials);
         Subdomain subdomain = subdomainService.readSubdomainIfExists(subdomainName);
-        return loginService.loginUserToSubdomain(loginCredentials);
+        return loginService.loginUserToSubdomain(subdomain, loginCredentials);
     }
 }
