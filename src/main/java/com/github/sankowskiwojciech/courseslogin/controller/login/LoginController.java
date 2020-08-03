@@ -1,10 +1,14 @@
 package com.github.sankowskiwojciech.courseslogin.controller.login;
 
+import com.github.sankowskiwojciech.courseslogin.controller.login.validator.LoginCredentialsValidator;
+import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
+import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
-import com.github.sankowskiwojciech.courseslogin.model.user.UserCredentials;
 import com.github.sankowskiwojciech.courseslogin.service.login.LoginService;
+import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,11 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class LoginController {
 
+    private final SubdomainService subdomainService;
     private final LoginService loginService;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/login")
-    public JwsToken login(@RequestBody UserCredentials userCredentials) {
-        return loginService.loginUser(userCredentials);
+    @PostMapping("/{subdomainName}/login")
+    public JwsToken login(@PathVariable("subdomainName") String subdomainName, @RequestBody LoginCredentials loginCredentials) {
+        LoginCredentialsValidator.validateLoginCredentials(loginCredentials);
+        Subdomain subdomain = subdomainService.readSubdomainIfExists(subdomainName);
+        return loginService.loginUserToSubdomain(loginCredentials);
     }
 }

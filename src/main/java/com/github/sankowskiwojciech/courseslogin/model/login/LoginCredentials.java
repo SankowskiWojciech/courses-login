@@ -1,11 +1,11 @@
-package com.github.sankowskiwojciech.courseslogin.model.user;
+package com.github.sankowskiwojciech.courseslogin.model.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class UserCredentials {
+public class LoginCredentials {
     private String emailAddress;
     private String password;
 }
