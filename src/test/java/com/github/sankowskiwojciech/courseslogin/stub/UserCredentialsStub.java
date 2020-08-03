@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
-import com.github.sankowskiwojciech.courseslogin.model.user.UserCredentials;
+import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -10,15 +10,15 @@ import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWO
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserCredentialsStub {
 
-    public static UserCredentials createWithAddressEmailAndPassword(String emailAddress, String password) {
-        return new UserCredentials(emailAddress, password);
+    public static LoginCredentials createWithAddressEmailAndPassword(String emailAddress, String password) {
+        return new LoginCredentials(emailAddress, password);
     }
 
-    public static UserCredentials create() {
-        return new UserCredentials(EMAIL_ADDRESS_STUB, PASSWORD_STUB);
+    public static LoginCredentials create() {
+        return new LoginCredentials(EMAIL_ADDRESS_STUB, PASSWORD_STUB);
     }
 
-    public static UserCredentials createEmpty() {
-        return new UserCredentials(null, null);
+    public static LoginCredentials createEmpty() {
+        return new LoginCredentials(null, null);
     }
 }

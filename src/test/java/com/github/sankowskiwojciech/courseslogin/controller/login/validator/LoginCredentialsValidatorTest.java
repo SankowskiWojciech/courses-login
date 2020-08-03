@@ -2,7 +2,6 @@ package com.github.sankowskiwojciech.courseslogin.controller.login.validator;
 
 import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.service.password.validator.UserCredentialsValidator;
 import com.github.sankowskiwojciech.courseslogin.stub.UserCredentialsStub;
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class LoginCredentialsValidatorTest {
         LoginCredentials loginCredentialsStub = UserCredentialsStub.createEmpty();
 
         //when
-        com.github.sankowskiwojciech.courseslogin.service.password.validator.UserCredentialsValidator.validateUserCredentials(loginCredentialsStub);
+        LoginCredentialsValidator.validateLoginCredentials(loginCredentialsStub);
 
         //then exception is thrown
     }
@@ -28,7 +27,7 @@ public class LoginCredentialsValidatorTest {
         LoginCredentials loginCredentialsStub = UserCredentialsStub.createWithAddressEmailAndPassword(null, PASSWORD_STUB);
 
         //when
-        com.github.sankowskiwojciech.courseslogin.service.password.validator.UserCredentialsValidator.validateUserCredentials(loginCredentialsStub);
+        LoginCredentialsValidator.validateLoginCredentials(loginCredentialsStub);
 
         //then exception is thrown
     }
@@ -39,7 +38,7 @@ public class LoginCredentialsValidatorTest {
         LoginCredentials loginCredentialsStub = UserCredentialsStub.createWithAddressEmailAndPassword(EMAIL_ADDRESS_STUB, null);
 
         //when
-        com.github.sankowskiwojciech.courseslogin.service.password.validator.UserCredentialsValidator.validateUserCredentials(loginCredentialsStub);
+        LoginCredentialsValidator.validateLoginCredentials(loginCredentialsStub);
 
         //then exception is thrown
     }
@@ -50,7 +49,7 @@ public class LoginCredentialsValidatorTest {
         LoginCredentials loginCredentialsStub = UserCredentialsStub.createWithAddressEmailAndPassword(EMAIL_ADDRESS_STUB, PASSWORD_STUB);
 
         //when
-        UserCredentialsValidator.validateUserCredentials(loginCredentialsStub);
+        LoginCredentialsValidator.validateLoginCredentials(loginCredentialsStub);
 
         //then nothing happens
     }

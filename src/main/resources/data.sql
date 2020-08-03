@@ -18,17 +18,9 @@ values (1, 'Kamil', 'Baczewski', 'kbac@gmail.com');
 insert into STUDENT(STUDENT_ID, FIRST_NAME, LAST_NAME, EMAIL_ADDRESS, PARENT_ID)
 values (1, 'Marcin', 'Baczewski', 'marcin.b@gmail.com', 1);
 
--- ORGANIZATION STUDENT RELATIONS
-insert into ORGANIZATION_STUDENT_RELATION(ORGANIZATION_ID, STUDENT_ID)
-values (1, 1);
-
--- ORGANIZATION TUTOR RELATIONS
-insert into ORGANIZATION_TUTOR_RELATION(ORGANIZATION_ID, TUTOR_ID)
-values (1, 1);
-
--- TUTOR STUDENT RELATIONS
-insert into TUTOR_STUDENT_RELATION(TUTOR_ID, STUDENT_ID)
-values (1, 1);
+-- SUBDOMAIN USER ACCESSES
+insert into SUBDOMAIN_USER_ACCESS(SUBDOMAIN_EMAIL_ADDRESS, USER_EMAIL_ADDRESS)
+values ('info@zslitnr1.pl', 'sankowski.wojciech@gmail.com');
 
 -- LOGIN_CREDENTIALS
 -- password: Test1

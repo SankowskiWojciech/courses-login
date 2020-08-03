@@ -2,7 +2,6 @@ package com.github.sankowskiwojciech.courseslogin.controller.login;
 
 import com.github.sankowskiwojciech.courseslogin.controller.login.validator.LoginCredentialsValidator;
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
 import com.github.sankowskiwojciech.courseslogin.service.login.LoginService;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
@@ -24,7 +23,7 @@ public class LoginController {
     @PostMapping("/{subdomainName}/login")
     public JwsToken login(@PathVariable("subdomainName") String subdomainName, @RequestBody LoginCredentials loginCredentials) {
         LoginCredentialsValidator.validateLoginCredentials(loginCredentials);
-        Subdomain subdomain = subdomainService.readSubdomainIfExists(subdomainName);
-        return loginService.loginUserToSubdomain(subdomain, loginCredentials);
+        String subdomainEmailAddress = subdomainService.readSubdomainEmailAddressIfSubdomainExists(subdomainName);
+        return loginService.loginUserToSubdomain(subdomainEmailAddress, loginCredentials);
     }
 }

@@ -1,13 +1,13 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.user.UserCredentialsEntity;
+import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserCredentialsEntityStub {
 
-    public static UserCredentialsEntity createWithAddressEmailAndPassword(String emailAddress, String password) {
-        return new UserCredentialsEntity(emailAddress, password);
+    public static LoginCredentialsEntity createWithAddressEmailAndPassword(String emailAddress, String password) {
+        return new LoginCredentialsEntity(1, emailAddress, password, null);
     }
 }

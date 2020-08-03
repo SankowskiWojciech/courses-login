@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.backend.repository;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.user.UserCredentialsEntity;
+import com.github.sankowskiwojciech.courseslogin.model.db.access.SubdomainUserAccessEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,19 +13,19 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class UserCredentialsRepositoryTest {
+public class SubdomainUserAccessRepositoryTest {
 
     @Autowired
-    private UserCredentialsRepository testee;
+    private SubdomainUserAccessRepository testee;
 
     @Test
     public void shouldFindAllEntitiesCorrectly() {
         //given
 
         //when
-        List<UserCredentialsEntity> userCredentialsEntities = testee.findAll();
+        List<SubdomainUserAccessEntity> subdomainUserAccessEntities = testee.findAll();
 
         //then
-        assertFalse(userCredentialsEntities.isEmpty());
+        assertFalse(subdomainUserAccessEntities.isEmpty());
     }
 }
