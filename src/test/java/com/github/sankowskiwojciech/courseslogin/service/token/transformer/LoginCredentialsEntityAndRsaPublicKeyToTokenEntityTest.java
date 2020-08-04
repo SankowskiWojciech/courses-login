@@ -30,7 +30,7 @@ public class LoginCredentialsEntityAndRsaPublicKeyToTokenEntityTest {
         assertNotNull(tokenEntity);
         assertNotNull(tokenEntity.getTokenId());
         assertNull(tokenEntity.getTokenValue());
-        assertEquals(loginCredentialsEntityStub.getEmailAddress(), tokenEntity.getUserEmailAddress());
+        assertEquals(loginCredentialsEntityStub.getUserEmailAddress(), tokenEntity.getUserEmailAddress());
         assertEquals(loginCredentialsEntityStub.getAccountType(), tokenEntity.getAccountType());
         assertEquals(Base64.getEncoder().encodeToString(rsaPublicKey), tokenEntity.getRsaPublicKey());
         assertNotNull(tokenEntity.getCreationDateTime());

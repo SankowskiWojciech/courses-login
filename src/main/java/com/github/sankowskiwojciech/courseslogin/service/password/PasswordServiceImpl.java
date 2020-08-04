@@ -14,19 +14,18 @@ public class PasswordServiceImpl implements PasswordService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public String encodePassword(String plainPassword) {
-        String encodedPassword = passwordEncoder.encode(plainPassword);
-        return new String(Base64.getEncoder().encode(encodedPassword.getBytes()));
+    public String createPasswordHash(String plainPassword) {
+        return passwordEncoder.encode(plainPassword);
     }
 
     @Override
-    public void validatePassword(String passwordFromRequest, String encodedPassword) {
-        if (!isPasswordValid(passwordFromRequest, encodedPassword)) {
+    public void validatePassword(String passwordFromRequest, String passwordHash) {
+        if (!isPasswordValid(passwordFromRequest, passwordHash)) {
             throw new InvalidCredentialsException();
         }
     }
 
-    private boolean isPasswordValid(String plainPassword, String encryptedPassword) {
-        return passwordEncoder.matches(plainPassword, new String(Base64.getDecoder().decode(encryptedPassword.getBytes())));
+    private boolean isPasswordValid(String passwordFromRequest, String passwordHash) {
+        return passwordEncoder.matches(new String(Base64.getDecoder().decode(passwordFromRequest.getBytes())), passwordHash);
     }
 }

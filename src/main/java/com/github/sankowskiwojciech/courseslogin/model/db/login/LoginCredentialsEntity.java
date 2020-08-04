@@ -22,11 +22,11 @@ import javax.persistence.Table;
 public class LoginCredentialsEntity {
 
     @Id
-    @Column(name = "EMAIL_ADDRESS", length = 50, unique = true, nullable = false, updatable = false)
-    private String emailAddress;
+    @Column(name = "USER_EMAIL_ADDRESS", length = 50, unique = true, nullable = false, updatable = false)
+    private String userEmailAddress;
 
-    @Column(name = "ENCRYPTED_PASSWORD", length = 80, nullable = false)
-    private String encryptedPassword;
+    @Column(name = "PASSWORD_HASH", length = 60, nullable = false)
+    private String passwordHash;
 
     @Column(name = "ACCOUNT_TYPE", length = 12, nullable = false)
     @Enumerated(EnumType.STRING)

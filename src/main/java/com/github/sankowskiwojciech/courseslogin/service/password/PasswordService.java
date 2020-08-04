@@ -2,7 +2,7 @@ package com.github.sankowskiwojciech.courseslogin.service.password;
 
 public interface PasswordService {
 
-    String encodePassword(String plainPassword);
+    String createPasswordHash(String plainPassword);
 
-    void validatePassword(String passwordFromRequest, String encodedPassword);
+    void validatePassword(String passwordFromRequest, String passwordHash);
 }

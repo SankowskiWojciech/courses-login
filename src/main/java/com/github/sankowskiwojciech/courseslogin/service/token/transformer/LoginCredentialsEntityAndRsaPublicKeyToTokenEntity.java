@@ -23,7 +23,7 @@ public class LoginCredentialsEntityAndRsaPublicKeyToTokenEntity implements BiFun
         LocalDateTime creationDateTime = LocalDateTime.now();
         return TokenEntity.builder()
                 .tokenId(UUID.randomUUID().toString())
-                .userEmailAddress(loginCredentialsEntity.getEmailAddress())
+                .userEmailAddress(loginCredentialsEntity.getUserEmailAddress())
                 .accountType(loginCredentialsEntity.getAccountType())
                 .rsaPublicKey(Base64.getEncoder().encodeToString(rsaPublicKey))
                 .creationDateTime(creationDateTime)

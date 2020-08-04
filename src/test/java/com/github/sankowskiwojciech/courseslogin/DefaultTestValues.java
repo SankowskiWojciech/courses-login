@@ -21,8 +21,8 @@ public interface DefaultTestValues {
     String TUTOR_PHONE_NUMBER_STUB = "111222333";
 
     String EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
-    String PASSWORD_STUB = "Test1";
-    String ENCRYPTED_PASSWORD_STUB = "JDJhJDE1JFhNV2RBYWxFREhQc3BKVk93cHRVdnVsN3QyRWMyLlVSZTNDMmJqR0MwNGkuNzdFTU9zVExD";
+    String PASSWORD_STUB = "VGVzdDE=";
+    String PASSWORD_HASH_STUB = "$2a$15$IuZTBhr5cSi9f4uaZ52uOekG.S/CvFRtxNhQGh1yjhHwJrOY0GbkW";
     String INVALID_PASSWORD_STUB = Base64.getEncoder().encodeToString("INVALID_PASSWORD_STUB".getBytes());
     String TOKEN_VALUE_STUB = "tokenValue";
     String RSA_PUBLIC_KEY_STUB = "rsaPublicKey";

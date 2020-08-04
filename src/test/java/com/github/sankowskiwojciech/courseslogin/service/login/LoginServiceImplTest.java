@@ -54,8 +54,8 @@ public class LoginServiceImplTest {
 
         //then
         verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
-        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainEmailAddressStub), eq(loginCredentialsEntityStub.getEmailAddress()));
-        verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getEncryptedPassword()));
+        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainEmailAddressStub), eq(loginCredentialsEntityStub.getUserEmailAddress()));
+        verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getPasswordHash()));
         verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub));
 
         assertNotNull(tokenResult);

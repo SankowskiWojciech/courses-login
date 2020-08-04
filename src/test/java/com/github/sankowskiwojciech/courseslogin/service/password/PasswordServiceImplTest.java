@@ -6,11 +6,10 @@ import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.util.Base64;
 import java.util.UUID;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ENCRYPTED_PASSWORD_STUB;
 import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.INVALID_PASSWORD_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWORD_HASH_STUB;
 import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWORD_STUB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -30,18 +29,18 @@ public class PasswordServiceImplTest {
     }
 
     @Test
-    public void shouldEncodePasswordCorrectly() {
+    public void shouldReturnPasswordHashCorrectly() {
         //given
         String passwordStub = UUID.randomUUID().toString();
-        String encodedPasswordStub = UUID.randomUUID().toString();
-        when(passwordEncoderMock.encode(eq(passwordStub))).thenReturn(encodedPasswordStub);
+        String passwordHashStub = UUID.randomUUID().toString();
+        when(passwordEncoderMock.encode(eq(passwordStub))).thenReturn(passwordHashStub);
 
         //when
-        String encodedPasswordResult = testee.encodePassword(passwordStub);
+        String encodedPasswordResult = testee.createPasswordHash(passwordStub);
 
         //then
         verify(passwordEncoderMock).encode(eq(passwordStub));
-        assertEquals(new String(Base64.getEncoder().encode(encodedPasswordStub.getBytes())), encodedPasswordResult);
+        assertEquals(passwordHashStub, encodedPasswordResult);
     }
 
     @Test(expected = InvalidCredentialsException.class)
@@ -49,13 +48,13 @@ public class PasswordServiceImplTest {
         //given
         boolean passwordMatches = false;
         String passwordFromRequest = PASSWORD_STUB;
-        String encryptedPassword = INVALID_PASSWORD_STUB;
+        String passwordHashStub = INVALID_PASSWORD_STUB;
 
         when(passwordEncoderMock.matches(anyString(), anyString())).thenReturn(passwordMatches);
 
         //when
         try {
-            testee.validatePassword(passwordFromRequest, encryptedPassword);
+            testee.validatePassword(passwordFromRequest, passwordHashStub);
         } catch (InvalidCredentialsException e) {
 
             //then exception is thrown
@@ -69,12 +68,12 @@ public class PasswordServiceImplTest {
         //given
         boolean passwordMatches = true;
         String passwordFromRequest = PASSWORD_STUB;
-        String encryptedPassword = ENCRYPTED_PASSWORD_STUB;
+        String passwordHashStub = PASSWORD_HASH_STUB;
 
         when(passwordEncoderMock.matches(anyString(), anyString())).thenReturn(passwordMatches);
 
         //when
-        testee.validatePassword(passwordFromRequest, encryptedPassword);
+        testee.validatePassword(passwordFromRequest, passwordHashStub);
 
         //then nothing happens
         verify(passwordEncoderMock).matches(anyString(), anyString());
