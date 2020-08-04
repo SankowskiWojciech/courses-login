@@ -22,9 +22,6 @@ import javax.persistence.Table;
 public class LoginCredentialsEntity {
 
     @Id
-    @Column(name = "ID", nullable = false, unique = true, updatable = false)
-    private long id;
-
     @Column(name = "EMAIL_ADDRESS", length = 50, unique = true, nullable = false, updatable = false)
     private String emailAddress;
 

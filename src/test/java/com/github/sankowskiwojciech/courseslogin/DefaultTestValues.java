@@ -21,10 +21,10 @@ public interface DefaultTestValues {
     String TUTOR_PHONE_NUMBER_STUB = "111222333";
 
     //student
-    long STUDENT_ID_STUB = 1;
+    String STUDENT_EMAIL_ADDRESS_STUB = "marcin.b@gmail.com";
 
     //parent
-    long PARENT_ID_STUB = 1;
+    String PARENT_EMAIL_ADDRESS_STUB = "kbac@gmail.com";
 
     String EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
     String PASSWORD_STUB = "password";

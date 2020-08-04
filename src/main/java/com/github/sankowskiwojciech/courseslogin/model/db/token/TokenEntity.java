@@ -27,7 +27,7 @@ public class TokenEntity {
     private String id;
 
     @Setter
-    @Column(name = "TOKEN_VALUE", length = 512, nullable = false, unique = true, updatable = false)
+    @Column(name = "TOKEN_VALUE", length = 512, nullable = false, updatable = false)
     private String tokenValue;
 
     @Column(name = "EMAIL_ADDRESS", length = 80, nullable = false, updatable = false)

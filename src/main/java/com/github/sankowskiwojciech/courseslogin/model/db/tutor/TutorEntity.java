@@ -21,8 +21,8 @@ import javax.persistence.Table;
 public class TutorEntity {
 
     @Id
-    @Column(name = "TUTOR_ID", nullable = false, unique = true, updatable = false)
-    private long tutorId;
+    @Column(name = "EMAIL_ADDRESS", length = 50, unique = true, nullable = false, updatable = false)
+    private String emailAddress;
 
     @Column(name = "ALIAS", length = 20, unique = true, nullable = false, updatable = false)
     private String alias;
@@ -35,9 +35,6 @@ public class TutorEntity {
 
     @Column(name = "DESCRIPTION", length = 500)
     private String description;
-
-    @Column(name = "EMAIL_ADDRESS", length = 50, unique = true, nullable = false, updatable = false)
-    private String emailAddress;
 
     @Column(name = "PHONE_NUMBER", length = 9)
     private String phoneNumber;

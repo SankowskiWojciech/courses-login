@@ -11,8 +11,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 import java.util.Optional;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PARENT_ID_STUB;
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.STUDENT_ID_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PARENT_EMAIL_ADDRESS_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.STUDENT_EMAIL_ADDRESS_STUB;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -39,18 +39,18 @@ public class StudentRepositoryTest {
     @Test
     public void shouldFindStudentAndHisParentCorrectly() {
         //given
-        long studentIdStub = STUDENT_ID_STUB;
-        long parentIdStub = PARENT_ID_STUB;
+        String studentEmailAddressStub = STUDENT_EMAIL_ADDRESS_STUB;
+        String parentEmailAddressStub = PARENT_EMAIL_ADDRESS_STUB;
 
         //when
-        Optional<StudentEntity> studentEntityOptional = testee.findById(studentIdStub);
+        Optional<StudentEntity> studentEntityOptional = testee.findById(studentEmailAddressStub);
 
         //then
         assertTrue(studentEntityOptional.isPresent());
         StudentEntity studentEntity = studentEntityOptional.get();
-        assertEquals(studentIdStub, studentEntity.getStudentId());
+        assertEquals(studentEmailAddressStub, studentEntity.getEmailAddress());
         ParentEntity parentEntity = studentEntity.getParent();
         assertNotNull(parentEntity);
-        assertEquals(parentIdStub, parentEntity.getParentId());
+        assertEquals(parentEmailAddressStub, parentEntity.getEmailAddress());
     }
 }

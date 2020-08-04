@@ -38,7 +38,7 @@ public class LoginCredentialsRepositoryTest {
         String emailAddressStub = EMAIL_ADDRESS_STUB;
 
         //when
-        Optional<LoginCredentialsEntity> loginCredentialsEntity = testee.findByEmailAddress(emailAddressStub);
+        Optional<LoginCredentialsEntity> loginCredentialsEntity = testee.findById(emailAddressStub);
 
         //then
         assertTrue(loginCredentialsEntity.isPresent());

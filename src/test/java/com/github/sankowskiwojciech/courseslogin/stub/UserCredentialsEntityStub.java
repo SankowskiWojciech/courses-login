@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 public class UserCredentialsEntityStub {
 
     public static LoginCredentialsEntity createWithAddressEmailAndPassword(String emailAddress, String password) {
-        return new LoginCredentialsEntity(1, emailAddress, password, null);
+        return new LoginCredentialsEntity(emailAddress, password, null);
     }
 }

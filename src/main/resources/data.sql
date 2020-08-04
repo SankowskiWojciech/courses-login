@@ -1,22 +1,22 @@
 -- ORGANIZATIONS
-insert into ORGANIZATION(ORGANIZATION_ID, ALIAS, NAME, DESCRIPTION, EMAIL_ADDRESS)
-values (1, 'zslitnr1', 'Zespół szkół licealnych i technicznych nr 1 w Warszawie', 'Technikum mechatroniczno - informatyczne', 'info@zslitnr1.pl');
-insert into ORGANIZATION(ORGANIZATION_ID, ALIAS, NAME, DESCRIPTION, EMAIL_ADDRESS)
-values (2, 'ssit', 'Szkoła śpiewu i tańca', 'Szkoła gdzie się uczy śpiewać i tańczyć', 'not.spam@dancewithme.pl');
+insert into ORGANIZATION(EMAIL_ADDRESS, ALIAS, NAME, DESCRIPTION)
+values ('info@zslitnr1.pl', 'zslitnr1', 'Zespół szkół licealnych i technicznych nr 1 w Warszawie', 'Technikum mechatroniczno - informatyczne');
+insert into ORGANIZATION(EMAIL_ADDRESS, ALIAS, NAME, DESCRIPTION)
+values ('not.spam@dancewithme.pl', 'ssit', 'Szkoła śpiewu i tańca', 'Szkoła gdzie się uczy śpiewać i tańczyć');
 
 -- TUTORS
-insert into TUTOR(TUTOR_ID, ALIAS, FIRST_NAME, LAST_NAME, DESCRIPTION, EMAIL_ADDRESS)
-values (1, 'wsankowski', 'Wojciech', 'Sankowski', 'Java Developer', 'sankowski.wojciech@gmail.com');
-insert into TUTOR(TUTOR_ID, ALIAS, FIRST_NAME, LAST_NAME, DESCRIPTION, EMAIL_ADDRESS)
-values (2, 'barkam', 'Bartosz', 'Kamiński', 'Profesjonalny tancerz', 'kaminski.bart@dancewithme.pl');
+insert into TUTOR(EMAIL_ADDRESS, ALIAS, FIRST_NAME, LAST_NAME, DESCRIPTION)
+values ('sankowski.wojciech@gmail.com', 'wsankowski', 'Wojciech', 'Sankowski', 'Java Developer');
+insert into TUTOR(EMAIL_ADDRESS, ALIAS, FIRST_NAME, LAST_NAME, DESCRIPTION)
+values ('kaminski.bart@dancewithme.pl', 'barkam', 'Bartosz', 'Kamiński', 'Profesjonalny tancerz');
 
 -- PARENTS
-insert into PARENT(PARENT_ID, FIRST_NAME, LAST_NAME, EMAIL_ADDRESS)
-values (1, 'Kamil', 'Baczewski', 'kbac@gmail.com');
+insert into PARENT(EMAIL_ADDRESS, FIRST_NAME, LAST_NAME)
+values ('kbac@gmail.com', 'Kamil', 'Baczewski');
 
 -- STUDENTS
-insert into STUDENT(STUDENT_ID, FIRST_NAME, LAST_NAME, EMAIL_ADDRESS, PARENT_ID)
-values (1, 'Marcin', 'Baczewski', 'marcin.b@gmail.com', 1);
+insert into STUDENT(EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PARENT_ID)
+values ('marcin.b@gmail.com', 'Marcin', 'Baczewski', 'kbac@gmail.com');
 
 -- SUBDOMAIN USER ACCESSES
 insert into SUBDOMAIN_USER_ACCESS(SUBDOMAIN_EMAIL_ADDRESS, USER_EMAIL_ADDRESS)
@@ -24,7 +24,7 @@ values ('info@zslitnr1.pl', 'sankowski.wojciech@gmail.com');
 
 -- LOGIN_CREDENTIALS
 -- password: Test1
-insert into LOGIN_CREDENTIALS(ID, EMAIL_ADDRESS, ENCRYPTED_PASSWORD, ACCOUNT_TYPE) values (1, 'sankowski.wojciech@gmail.com', 'JDJhJDE1JFhNV2RBYWxFREhQc3BKVk93cHRVdnVsN3QyRWMyLlVSZTNDMmJqR0MwNGkuNzdFTU9zVExD', 'TUTOR');
+insert into LOGIN_CREDENTIALS(EMAIL_ADDRESS, ENCRYPTED_PASSWORD, ACCOUNT_TYPE) values ('sankowski.wojciech@gmail.com', 'JDJhJDE1JFhNV2RBYWxFREhQc3BKVk93cHRVdnVsN3QyRWMyLlVSZTNDMmJqR0MwNGkuNzdFTU9zVExD', 'TUTOR');
 
 
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface OrganizationRepository extends JpaRepository<OrganizationEntity, Long> {
+public interface OrganizationRepository extends JpaRepository<OrganizationEntity, String> {
 
     Optional<OrganizationEntity> findByAlias(String alias);
 }

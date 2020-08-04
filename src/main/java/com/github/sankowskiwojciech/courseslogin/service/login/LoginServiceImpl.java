@@ -29,7 +29,7 @@ public class LoginServiceImpl implements LoginService {
     }
 
     private LoginCredentialsEntity readLoginCredentials(String emailAddress) {
-        return loginCredentialsRepository.findByEmailAddress(emailAddress)
+        return loginCredentialsRepository.findById(emailAddress)
                 .orElseThrow(InvalidCredentialsException::new);
     }
 }
