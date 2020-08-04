@@ -10,14 +10,6 @@ values ('sankowski.wojciech@gmail.com', 'wsankowski', 'Wojciech', 'Sankowski', '
 insert into TUTOR(EMAIL_ADDRESS, ALIAS, FIRST_NAME, LAST_NAME, DESCRIPTION)
 values ('kaminski.bart@dancewithme.pl', 'barkam', 'Bartosz', 'Kamiński', 'Profesjonalny tancerz');
 
--- PARENTS
-insert into PARENT(EMAIL_ADDRESS, FIRST_NAME, LAST_NAME)
-values ('kbac@gmail.com', 'Kamil', 'Baczewski');
-
--- STUDENTS
-insert into STUDENT(EMAIL_ADDRESS, FIRST_NAME, LAST_NAME, PARENT_ID)
-values ('marcin.b@gmail.com', 'Marcin', 'Baczewski', 'kbac@gmail.com');
-
 -- SUBDOMAIN USER ACCESSES
 insert into SUBDOMAIN_USER_ACCESS(SUBDOMAIN_EMAIL_ADDRESS, USER_EMAIL_ADDRESS)
 values ('info@zslitnr1.pl', 'sankowski.wojciech@gmail.com');

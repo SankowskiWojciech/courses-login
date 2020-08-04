@@ -20,12 +20,6 @@ public interface DefaultTestValues {
     String TUTOR_EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
     String TUTOR_PHONE_NUMBER_STUB = "111222333";
 
-    //student
-    String STUDENT_EMAIL_ADDRESS_STUB = "marcin.b@gmail.com";
-
-    //parent
-    String PARENT_EMAIL_ADDRESS_STUB = "kbac@gmail.com";
-
     String EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
     String PASSWORD_STUB = "Test1";
     String ENCRYPTED_PASSWORD_STUB = "JDJhJDE1JFhNV2RBYWxFREhQc3BKVk93cHRVdnVsN3QyRWMyLlVSZTNDMmJqR0MwNGkuNzdFTU9zVExD";
