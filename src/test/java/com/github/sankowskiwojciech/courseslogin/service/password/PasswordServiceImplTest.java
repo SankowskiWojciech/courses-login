@@ -9,6 +9,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Base64;
 import java.util.UUID;
 
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ENCRYPTED_PASSWORD_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.INVALID_PASSWORD_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWORD_STUB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
@@ -45,8 +48,8 @@ public class PasswordServiceImplTest {
     public void shouldThrowInvalidCredentialsExceptionWhenPasswordIsNotValid() {
         //given
         boolean passwordMatches = false;
-        String passwordFromRequest = UUID.randomUUID().toString();
-        String encryptedPassword = UUID.randomUUID().toString();
+        String passwordFromRequest = PASSWORD_STUB;
+        String encryptedPassword = INVALID_PASSWORD_STUB;
 
         when(passwordEncoderMock.matches(anyString(), anyString())).thenReturn(passwordMatches);
 
@@ -65,8 +68,8 @@ public class PasswordServiceImplTest {
     public void shouldDoNothingWhenPasswordIsValid() {
         //given
         boolean passwordMatches = true;
-        String passwordFromRequest = UUID.randomUUID().toString();
-        String encryptedPassword = UUID.randomUUID().toString();
+        String passwordFromRequest = PASSWORD_STUB;
+        String encryptedPassword = ENCRYPTED_PASSWORD_STUB;
 
         when(passwordEncoderMock.matches(anyString(), anyString())).thenReturn(passwordMatches);
 

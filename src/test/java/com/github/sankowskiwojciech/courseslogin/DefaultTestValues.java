@@ -1,5 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin;
 
+import java.util.Base64;
+
 public interface DefaultTestValues {
 
     //organization
@@ -27,6 +29,7 @@ public interface DefaultTestValues {
     String EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
     String PASSWORD_STUB = "Test1";
     String ENCRYPTED_PASSWORD_STUB = "JDJhJDE1JFhNV2RBYWxFREhQc3BKVk93cHRVdnVsN3QyRWMyLlVSZTNDMmJqR0MwNGkuNzdFTU9zVExD";
+    String INVALID_PASSWORD_STUB = Base64.getEncoder().encodeToString("INVALID_PASSWORD_STUB".getBytes());
     String TOKEN_VALUE_STUB = "tokenValue";
     String RSA_PUBLIC_KEY_STUB = "rsaPublicKey";
     byte[] RSA_PUBLIC_KEY_BYTE_ARRAY_STUB = "rsaPublicKey".getBytes();

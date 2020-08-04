@@ -22,10 +22,10 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public Token loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest) {
-        LoginCredentialsEntity loginCredentialsEntity = readLoginCredentials(loginCredentialsFromRequest.getEmailAddress());
+        LoginCredentialsEntity loginCredentialsEntity = readLoginCredentials(loginCredentialsFromRequest.getUserEmailAddress());
         subdomainService.validateIfUserIsAllowedToLoginToSubdomain(subdomainEmailAddress, loginCredentialsEntity.getEmailAddress());
         passwordService.validatePassword(loginCredentialsFromRequest.getPassword(), loginCredentialsEntity.getEncryptedPassword());
-        return tokenService.generateToken(loginCredentialsEntity.getEmailAddress());
+        return tokenService.generateToken(loginCredentialsEntity);
     }
 
     private LoginCredentialsEntity readLoginCredentials(String emailAddress) {

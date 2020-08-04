@@ -11,23 +11,23 @@ import java.security.PrivateKey;
 import java.util.function.BiFunction;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class TokenEntityAndPrivateKeyToJwsToken implements BiFunction<TokenEntity, PrivateKey, Token> {
+public class TokenEntityAndPrivateKeyToToken implements BiFunction<TokenEntity, PrivateKey, Token> {
 
-    private static final TokenEntityAndPrivateKeyToJwsToken INSTANCE = new TokenEntityAndPrivateKeyToJwsToken();
+    private static final TokenEntityAndPrivateKeyToToken INSTANCE = new TokenEntityAndPrivateKeyToToken();
 
     @Override
     public Token apply(TokenEntity tokenEntity, PrivateKey privateKey) {
         String jws = Jwts.builder()
-                .setId(tokenEntity.getId())
-                .setSubject(tokenEntity.getEmailAddress())
+                .setId(tokenEntity.getTokenId())
+                .setSubject(tokenEntity.getUserEmailAddress())
                 .setIssuedAt(LocalDateTimeToDate.getInstance().apply(tokenEntity.getCreationDateTime()))
                 .setExpiration(LocalDateTimeToDate.getInstance().apply(tokenEntity.getExpirationDateTime()))
                 .signWith(privateKey)
                 .compact();
-        return new Token(jws);
+        return new Token(jws, tokenEntity.getAccountType());
     }
 
-    public static TokenEntityAndPrivateKeyToJwsToken getInstance() {
+    public static TokenEntityAndPrivateKeyToToken getInstance() {
         return INSTANCE;
     }
 }

@@ -1,13 +1,15 @@
 package com.github.sankowskiwojciech.courseslogin.service.token;
 
 import com.github.sankowskiwojciech.courseslogin.backend.repository.TokenRepository;
+import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
 import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.EMAIL_ADDRESS_STUB;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -24,17 +26,18 @@ public class TokenServiceImplTest {
     }
 
     @Test
-    public void shouldGenerateJwsTokenCorrectly() {
+    public void shouldGenerateTokenCorrectly() {
         //given
-        String emailAddress = EMAIL_ADDRESS_STUB;
+        LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
 
         //when
-        Token token = testee.generateToken(emailAddress);
+        Token token = testee.generateToken(loginCredentialsEntityStub);
 
         //then
         verify(tokenRepositoryMock).save(any(TokenEntity.class));
 
         assertNotNull(token);
-        assertNotNull(token.getToken());
+        assertNotNull(token.getTokenValue());
+        assertEquals(loginCredentialsEntityStub.getAccountType(), token.getAccountType());
     }
 }

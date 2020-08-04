@@ -9,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 import javax.sql.DataSource;
 
 @Configuration
-@PropertySource(value = "data-source.properties")
+@PropertySource(value = "classpath:data-source.properties")
 public class DatabaseConfig {
 
     @ConfigurationProperties(prefix = "data-source.postgres")

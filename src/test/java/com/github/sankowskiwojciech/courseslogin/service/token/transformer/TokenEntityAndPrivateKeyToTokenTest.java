@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TokenEntityAndPrivateKeyToTokenTest {
 
-    private final TokenEntityAndPrivateKeyToJwsToken testee = TokenEntityAndPrivateKeyToJwsToken.getInstance();
+    private final TokenEntityAndPrivateKeyToToken testee = TokenEntityAndPrivateKeyToToken.getInstance();
 
     @Test
     public void shouldTransformCorrectly() {
@@ -31,8 +31,9 @@ public class TokenEntityAndPrivateKeyToTokenTest {
 
         //then
         assertNotNull(token);
-        assertNotNull(token.getToken());
-        Jws<Claims> parsedJws = parseJws(token.getToken(), keyPair.getPublic());
+        assertNotNull(token.getTokenValue());
+        assertEquals(tokenEntityStub.getAccountType(), token.getAccountType());
+        Jws<Claims> parsedJws = parseJws(token.getTokenValue(), keyPair.getPublic());
         assertParsedJws(parsedJws.getBody(), tokenEntityStub);
     }
 
@@ -41,8 +42,8 @@ public class TokenEntityAndPrivateKeyToTokenTest {
     }
 
     private void assertParsedJws(Claims parsedJwsBody, TokenEntity tokenEntity) {
-        assertEquals(tokenEntity.getId(), parsedJwsBody.getId());
-        assertEquals(tokenEntity.getEmailAddress(), parsedJwsBody.getSubject());
+        assertEquals(tokenEntity.getTokenId(), parsedJwsBody.getId());
+        assertEquals(tokenEntity.getUserEmailAddress(), parsedJwsBody.getSubject());
         assertEquals(tokenEntity.getCreationDateTime().withNano(0), DateToLocalDateTime.getInstance().apply(parsedJwsBody.getIssuedAt()));
         assertEquals(tokenEntity.getExpirationDateTime().withNano(0), DateToLocalDateTime.getInstance().apply(parsedJwsBody.getExpiration()));
     }

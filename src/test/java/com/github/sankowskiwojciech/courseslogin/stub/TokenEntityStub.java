@@ -1,5 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
+import com.github.sankowskiwojciech.courseslogin.model.account.AccountType;
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -16,9 +17,10 @@ public class TokenEntityStub {
 
     public static TokenEntity create() {
         return TokenEntity.builder()
-                .id(UUID.randomUUID().toString())
+                .tokenId(UUID.randomUUID().toString())
                 .tokenValue(TOKEN_VALUE_STUB)
-                .emailAddress(EMAIL_ADDRESS_STUB)
+                .userEmailAddress(EMAIL_ADDRESS_STUB)
+                .accountType(AccountType.TUTOR)
                 .rsaPublicKey(RSA_PUBLIC_KEY_STUB)
                 .creationDateTime(LocalDateTime.now())
                 .expirationDateTime(LocalDateTime.now().plusHours(1))

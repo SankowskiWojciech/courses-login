@@ -1,5 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
+import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -11,24 +12,26 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.BiFunction;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class EmailAddressAndRsaPublicKeyToTokenEntity implements BiFunction<String, byte[], TokenEntity> {
+public class LoginCredentialsEntityAndRsaPublicKeyToTokenEntity implements BiFunction<LoginCredentialsEntity, byte[], TokenEntity> {
 
-    private static final EmailAddressAndRsaPublicKeyToTokenEntity INSTANCE = new EmailAddressAndRsaPublicKeyToTokenEntity();
+    private static final LoginCredentialsEntityAndRsaPublicKeyToTokenEntity INSTANCE = new LoginCredentialsEntityAndRsaPublicKeyToTokenEntity();
+
     private static final long DEFAULT_TOKEN_VALIDITY_TIME_IN_HOURS = TimeUnit.HOURS.toHours(1);
 
     @Override
-    public TokenEntity apply(String emailAddress, byte[] rsaPublicKey) {
+    public TokenEntity apply(LoginCredentialsEntity loginCredentialsEntity, byte[] rsaPublicKey) {
         LocalDateTime creationDateTime = LocalDateTime.now();
         return TokenEntity.builder()
-                .id(UUID.randomUUID().toString())
-                .emailAddress(emailAddress)
+                .tokenId(UUID.randomUUID().toString())
+                .userEmailAddress(loginCredentialsEntity.getEmailAddress())
+                .accountType(loginCredentialsEntity.getAccountType())
                 .rsaPublicKey(Base64.getEncoder().encodeToString(rsaPublicKey))
                 .creationDateTime(creationDateTime)
                 .expirationDateTime(creationDateTime.plusHours(DEFAULT_TOKEN_VALIDITY_TIME_IN_HOURS))
                 .build();
     }
 
-    public static EmailAddressAndRsaPublicKeyToTokenEntity getInstance() {
+    public static LoginCredentialsEntityAndRsaPublicKeyToTokenEntity getInstance() {
         return INSTANCE;
     }
 }

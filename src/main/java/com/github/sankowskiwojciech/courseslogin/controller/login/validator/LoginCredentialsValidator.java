@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 public class LoginCredentialsValidator {
 
     public static void validateLoginCredentials(LoginCredentials loginCredentials) {
-        if (loginCredentials == null || StringUtils.isBlank(loginCredentials.getEmailAddress()) || StringUtils.isBlank(loginCredentials.getPassword())) {
+        if (loginCredentials == null || StringUtils.isBlank(loginCredentials.getUserEmailAddress()) || StringUtils.isBlank(loginCredentials.getPassword())) {
             throw new InvalidCredentialsException();
         }
     }

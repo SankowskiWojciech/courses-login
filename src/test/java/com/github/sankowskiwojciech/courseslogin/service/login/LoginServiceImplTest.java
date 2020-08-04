@@ -46,17 +46,17 @@ public class LoginServiceImplTest {
         LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
         Token tokenStub = TokenStub.create();
 
-        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(Optional.of(loginCredentialsEntityStub));
-        when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub.getEmailAddress()))).thenReturn(tokenStub);
+        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.of(loginCredentialsEntityStub));
+        when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub))).thenReturn(tokenStub);
 
         //when
         Token tokenResult = testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
 
         //then
-        verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getEmailAddress()));
+        verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
         verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainEmailAddressStub), eq(loginCredentialsEntityStub.getEmailAddress()));
         verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getEncryptedPassword()));
-        verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub.getEmailAddress()));
+        verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub));
 
         assertNotNull(tokenResult);
         assertEquals(tokenResult, tokenStub);
@@ -68,7 +68,7 @@ public class LoginServiceImplTest {
         String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
         LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
 
-        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(Optional.empty());
+        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.empty());
 
         //when
         try {
@@ -76,7 +76,7 @@ public class LoginServiceImplTest {
         } catch (InvalidCredentialsException e) {
 
             //then exception is thrown
-            verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getEmailAddress()));
+            verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
             throw e;
         }
     }
