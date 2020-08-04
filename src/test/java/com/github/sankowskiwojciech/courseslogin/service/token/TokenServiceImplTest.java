@@ -2,7 +2,7 @@ package com.github.sankowskiwojciech.courseslogin.service.token;
 
 import com.github.sankowskiwojciech.courseslogin.backend.repository.TokenRepository;
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
+import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -29,12 +29,12 @@ public class TokenServiceImplTest {
         String emailAddress = EMAIL_ADDRESS_STUB;
 
         //when
-        JwsToken jwsToken = testee.generateJwsToken(emailAddress);
+        Token token = testee.generateJwsToken(emailAddress);
 
         //then
         verify(tokenRepositoryMock).save(any(TokenEntity.class));
 
-        assertNotNull(jwsToken);
-        assertNotNull(jwsToken.getToken());
+        assertNotNull(token);
+        assertNotNull(token.getToken());
     }
 }

@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
+import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 import com.github.sankowskiwojciech.courseslogin.stub.KeyPairStub;
 import com.github.sankowskiwojciech.courseslogin.stub.TokenEntityStub;
 import com.github.sankowskiwojciech.courseslogin.util.DateToLocalDateTime;
@@ -16,7 +16,7 @@ import java.security.PublicKey;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TokenEntityAndPrivateKeyToJwsTokenTest {
+public class TokenEntityAndPrivateKeyToTokenTest {
 
     private final TokenEntityAndPrivateKeyToJwsToken testee = TokenEntityAndPrivateKeyToJwsToken.getInstance();
 
@@ -27,12 +27,12 @@ public class TokenEntityAndPrivateKeyToJwsTokenTest {
         KeyPair keyPair = KeyPairStub.create();
 
         //when
-        JwsToken jwsToken = testee.apply(tokenEntityStub, keyPair.getPrivate());
+        Token token = testee.apply(tokenEntityStub, keyPair.getPrivate());
 
         //then
-        assertNotNull(jwsToken);
-        assertNotNull(jwsToken.getToken());
-        Jws<Claims> parsedJws = parseJws(jwsToken.getToken(), keyPair.getPublic());
+        assertNotNull(token);
+        assertNotNull(token.getToken());
+        Jws<Claims> parsedJws = parseJws(token.getToken(), keyPair.getPublic());
         assertParsedJws(parsedJws.getBody(), tokenEntityStub);
     }
 

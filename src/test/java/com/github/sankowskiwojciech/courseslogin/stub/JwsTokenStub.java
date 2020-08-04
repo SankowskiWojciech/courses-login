@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
-import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
+import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -9,7 +9,7 @@ import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.JWS_TO
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class JwsTokenStub {
 
-    public static JwsToken create() {
-        return new JwsToken(JWS_TOKEN_STUB);
+    public static Token create() {
+        return new Token(JWS_TOKEN_STUB);
     }
 }
