@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.service.login;
 
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.token.JwsToken;
+import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
 import com.github.sankowskiwojciech.courseslogin.stub.JwsTokenStub;
@@ -32,18 +32,18 @@ public class LoginServiceImplTest {
     public void shouldLoginUserCorrectly() {
         //given
         LoginCredentials loginCredentialsStub = UserCredentialsStub.create();
-        JwsToken jwsTokenStub = JwsTokenStub.create();
+        Token tokenStub = JwsTokenStub.create();
 
-        when(tokenServiceMock.generateJwsToken(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(jwsTokenStub);
+        when(tokenServiceMock.generateJwsToken(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(tokenStub);
 
         //when
-        JwsToken jwsTokenResult = testee.loginUserToSubdomain(loginCredentialsStub);
+        Token tokenResult = testee.loginUserToSubdomain(loginCredentialsStub);
 
         //then
         verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub));
         verify(tokenServiceMock).generateJwsToken(eq(loginCredentialsStub.getEmailAddress()));
 
-        assertNotNull(jwsTokenResult);
-        assertEquals(jwsTokenResult, jwsTokenStub);
+        assertNotNull(tokenResult);
+        assertEquals(tokenResult, tokenStub);
     }
 }
