@@ -4,12 +4,12 @@ import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.JWS_TOKEN_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.TOKEN_STUB;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class JwsTokenStub {
+public class TokenStub {
 
     public static Token create() {
-        return new Token(JWS_TOKEN_STUB);
+        return new Token(TOKEN_STUB);
     }
 }

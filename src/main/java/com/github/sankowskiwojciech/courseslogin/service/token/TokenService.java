@@ -4,5 +4,5 @@ import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 
 public interface TokenService {
 
-    Token generateJwsToken(String emailAddress);
+    Token generateToken(String emailAddress);
 }

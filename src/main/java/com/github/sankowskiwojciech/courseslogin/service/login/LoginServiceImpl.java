@@ -25,7 +25,7 @@ public class LoginServiceImpl implements LoginService {
         LoginCredentialsEntity loginCredentialsEntity = readLoginCredentials(loginCredentialsFromRequest.getEmailAddress());
         subdomainService.validateIfUserIsAllowedToLoginToSubdomain(subdomainEmailAddress, loginCredentialsEntity.getEmailAddress());
         passwordService.validatePassword(loginCredentialsFromRequest.getPassword(), loginCredentialsEntity.getEncryptedPassword());
-        return tokenService.generateJwsToken(loginCredentialsEntity.getEmailAddress());
+        return tokenService.generateToken(loginCredentialsEntity.getEmailAddress());
     }
 
     private LoginCredentialsEntity readLoginCredentials(String emailAddress) {

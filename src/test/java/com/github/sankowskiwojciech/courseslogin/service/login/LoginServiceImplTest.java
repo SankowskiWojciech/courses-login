@@ -1,49 +1,83 @@
-//package com.github.sankowskiwojciech.courseslogin.service.login;
-//
-//import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-//import com.github.sankowskiwojciech.courseslogin.model.token.Token;
-//import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
-//import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
-//import com.github.sankowskiwojciech.courseslogin.stub.JwsTokenStub;
-//import com.github.sankowskiwojciech.courseslogin.stub.UserCredentialsStub;
-//import org.junit.Before;
-//import org.junit.Test;
-//import org.mockito.Mockito;
-//
-//import static org.junit.Assert.assertEquals;
-//import static org.junit.Assert.assertNotNull;
-//import static org.mockito.ArgumentMatchers.eq;
-//import static org.mockito.Mockito.mock;
-//import static org.mockito.Mockito.verify;
-//import static org.mockito.Mockito.when;
-//
-//public class LoginServiceImplTest {
-//
-//    private final PasswordService passwordServiceMock = mock(PasswordService.class);
-//    private final TokenService tokenServiceMock = mock(TokenService.class);
-//    private final LoginService testee = new LoginServiceImpl(passwordServiceMock, tokenServiceMock);
-//
-//    @Before
-//    public void reset() {
-//        Mockito.reset(passwordServiceMock, tokenServiceMock);
-//    }
-//
-//    @Test
-//    public void shouldLoginUserCorrectly() {
-//        //given
-//        LoginCredentials loginCredentialsStub = UserCredentialsStub.create();
-//        Token tokenStub = JwsTokenStub.create();
-//
-//        when(tokenServiceMock.generateJwsToken(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(tokenStub);
-//
-//        //when
-//        Token tokenResult = testee.loginUserToSubdomain(loginCredentialsStub);
-//
-//        //then
-//        verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub));
-//        verify(tokenServiceMock).generateJwsToken(eq(loginCredentialsStub.getEmailAddress()));
-//
-//        assertNotNull(tokenResult);
-//        assertEquals(tokenResult, tokenStub);
-//    }
-//}
+package com.github.sankowskiwojciech.courseslogin.service.login;
+
+import com.github.sankowskiwojciech.courseslogin.backend.repository.LoginCredentialsRepository;
+import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
+import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
+import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
+import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
+import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
+import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
+import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
+import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsStub;
+import com.github.sankowskiwojciech.courseslogin.stub.TokenStub;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.util.Optional;
+
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ORGANIZATION_EMAIL_ADDRESS_STUB;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+public class LoginServiceImplTest {
+
+    private final LoginCredentialsRepository loginCredentialsRepositoryMock = mock(LoginCredentialsRepository.class);
+    private final SubdomainService subdomainServiceMock = mock(SubdomainService.class);
+    private final PasswordService passwordServiceMock = mock(PasswordService.class);
+    private final TokenService tokenServiceMock = mock(TokenService.class);
+    private final LoginService testee = new LoginServiceImpl(loginCredentialsRepositoryMock, passwordServiceMock, tokenServiceMock, subdomainServiceMock);
+
+    @Before
+    public void reset() {
+        Mockito.reset(loginCredentialsRepositoryMock, subdomainServiceMock, passwordServiceMock, tokenServiceMock);
+    }
+
+    @Test
+    public void shouldLoginUserCorrectly() {
+        //given
+        String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
+        LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
+        LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
+        Token tokenStub = TokenStub.create();
+
+        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(Optional.of(loginCredentialsEntityStub));
+        when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub.getEmailAddress()))).thenReturn(tokenStub);
+
+        //when
+        Token tokenResult = testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
+
+        //then
+        verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getEmailAddress()));
+        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainEmailAddressStub), eq(loginCredentialsEntityStub.getEmailAddress()));
+        verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getEncryptedPassword()));
+        verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub.getEmailAddress()));
+
+        assertNotNull(tokenResult);
+        assertEquals(tokenResult, tokenStub);
+    }
+
+    @Test(expected = InvalidCredentialsException.class)
+    public void shouldThrowInvalidCredentialsExceptionWhenUserWithGivenEmailAddressDoesNotExist() {
+        //given
+        String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
+        LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
+
+        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getEmailAddress()))).thenReturn(Optional.empty());
+
+        //when
+        try {
+            testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
+        } catch (InvalidCredentialsException e) {
+
+            //then exception is thrown
+            verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getEmailAddress()));
+            throw e;
+        }
+    }
+}

@@ -29,7 +29,7 @@ public class TokenServiceImplTest {
         String emailAddress = EMAIL_ADDRESS_STUB;
 
         //when
-        Token token = testee.generateJwsToken(emailAddress);
+        Token token = testee.generateToken(emailAddress);
 
         //then
         verify(tokenRepositoryMock).save(any(TokenEntity.class));

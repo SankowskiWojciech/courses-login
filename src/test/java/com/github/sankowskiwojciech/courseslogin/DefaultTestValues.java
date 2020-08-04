@@ -3,7 +3,6 @@ package com.github.sankowskiwojciech.courseslogin;
 public interface DefaultTestValues {
 
     //organization
-    long ORGANIZATION_ID_STUB = 1;
     String ORGANIZATION_ALIAS_STUB = "ssit";
     String ORGANIZATION_NAME_STUB = "Szkoła śpiewu i tańca";
     String ORGANIZATION_DESCRIPTION_STUB = "Szkoła gdzie się uczy śpiewać i tańczyć";
@@ -12,7 +11,6 @@ public interface DefaultTestValues {
     String ORGANIZATION_WEBSITE_URL_STUB = "http://dancewithme.pl";
 
     //tutor
-    long TUTOR_ID_STUB = 1;
     String TUTOR_ALIAS_STUB = "wsankowski";
     String TUTOR_FIRST_NAME_STUB = "Wojciech";
     String TUTOR_LAST_NAME_STUB = "Sankowski";
@@ -27,9 +25,10 @@ public interface DefaultTestValues {
     String PARENT_EMAIL_ADDRESS_STUB = "kbac@gmail.com";
 
     String EMAIL_ADDRESS_STUB = "sankowski.wojciech@gmail.com";
-    String PASSWORD_STUB = "password";
+    String PASSWORD_STUB = "Test1";
+    String ENCRYPTED_PASSWORD_STUB = "JDJhJDE1JFhNV2RBYWxFREhQc3BKVk93cHRVdnVsN3QyRWMyLlVSZTNDMmJqR0MwNGkuNzdFTU9zVExD";
     String TOKEN_VALUE_STUB = "tokenValue";
     String RSA_PUBLIC_KEY_STUB = "rsaPublicKey";
     byte[] RSA_PUBLIC_KEY_BYTE_ARRAY_STUB = "rsaPublicKey".getBytes();
-    String JWS_TOKEN_STUB = "jwsTokenStub";
+    String TOKEN_STUB = "jwsTokenStub";
 }

@@ -19,7 +19,7 @@ public class TokenServiceImpl implements TokenService {
     private final TokenRepository tokenRepository;
 
     @Override
-    public Token generateJwsToken(String emailAddress) {
+    public Token generateToken(String emailAddress) {
         KeyPair keyPair = Keys.keyPairFor(SignatureAlgorithm.ES512);
         TokenEntity tokenEntity = EmailAddressAndRsaPublicKeyToTokenEntity.getInstance().apply(emailAddress, keyPair.getPublic().getEncoded());
         Token token = TokenEntityAndPrivateKeyToJwsToken.getInstance().apply(tokenEntity, keyPair.getPrivate());

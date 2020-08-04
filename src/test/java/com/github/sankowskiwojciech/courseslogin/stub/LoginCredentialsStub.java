@@ -8,7 +8,7 @@ import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.EMAIL_
 import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWORD_STUB;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class UserCredentialsStub {
+public class LoginCredentialsStub {
 
     public static LoginCredentials createWithAddressEmailAndPassword(String emailAddress, String password) {
         return new LoginCredentials(emailAddress, password);
