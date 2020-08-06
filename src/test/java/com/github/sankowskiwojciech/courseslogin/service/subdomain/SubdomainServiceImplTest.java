@@ -8,6 +8,7 @@ import com.github.sankowskiwojciech.courseslogin.model.db.organization.Organizat
 import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.SubdomainNotFoundException;
 import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToLoginToSubdomainException;
+import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.stub.OrganizationEntityStub;
 import com.github.sankowskiwojciech.courseslogin.stub.TutorEntityStub;
 import org.junit.Before;
@@ -48,7 +49,7 @@ public class SubdomainServiceImplTest {
 
         //when
         try {
-            String subdomainEmailAddress = testee.readSubdomainEmailAddressIfSubdomainExists(subdomainName);
+            Subdomain subdomain = testee.readSubdomainInformationIfSubdomainExists(subdomainName);
         } catch (SubdomainNotFoundException e) {
 
             //then exception is thrown
@@ -66,7 +67,7 @@ public class SubdomainServiceImplTest {
         when(organizationRepositoryMock.findByAlias(eq(subdomainName))).thenReturn(Optional.of(organizationEntityStub));
 
         //when
-        testee.readSubdomainEmailAddressIfSubdomainExists(subdomainName);
+        testee.readSubdomainInformationIfSubdomainExists(subdomainName);
 
         //then nothing happens
         verify(organizationRepositoryMock).findByAlias(eq(subdomainName));
@@ -81,7 +82,7 @@ public class SubdomainServiceImplTest {
         when(tutorRepositoryMock.findByAlias(eq(subdomainName))).thenReturn(Optional.of(tutorEntityStub));
 
         //when
-        testee.readSubdomainEmailAddressIfSubdomainExists(subdomainName);
+        testee.readSubdomainInformationIfSubdomainExists(subdomainName);
 
         //then nothing happens
         verify(organizationRepositoryMock).findByAlias(eq(subdomainName));

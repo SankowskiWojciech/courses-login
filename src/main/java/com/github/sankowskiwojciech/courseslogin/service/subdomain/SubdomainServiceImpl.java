@@ -8,6 +8,9 @@ import com.github.sankowskiwojciech.courseslogin.model.db.organization.Organizat
 import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.SubdomainNotFoundException;
 import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToLoginToSubdomainException;
+import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
+import com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer.OrganizationEntityToSubdomain;
+import com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer.TutorEntityToSubdomain;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +25,14 @@ public class SubdomainServiceImpl implements SubdomainService {
     private final SubdomainUserAccessRepository subdomainUserAccessRepository;
 
     @Override
-    public String readSubdomainEmailAddressIfSubdomainExists(String subdomainName) {
+    public Subdomain readSubdomainInformationIfSubdomainExists(String subdomainName) {
         Optional<OrganizationEntity> organizationEntity = organizationRepository.findByAlias(subdomainName);
         if (organizationEntity.isPresent()) {
-            return organizationEntity.get().getEmailAddress();
+            return OrganizationEntityToSubdomain.getInstance().apply(organizationEntity.get());
         }
         Optional<TutorEntity> tutorEntity = tutorRepository.findByAlias(subdomainName);
         if (tutorEntity.isPresent()) {
-            return tutorEntity.get().getEmailAddress();
+            return TutorEntityToSubdomain.getInstance().apply(tutorEntity.get());
         }
         throw new SubdomainNotFoundException();
     }

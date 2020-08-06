@@ -2,6 +2,7 @@ package com.github.sankowskiwojciech.courseslogin.controller.login;
 
 import com.github.sankowskiwojciech.courseslogin.controller.login.validator.LoginCredentialsValidator;
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
+import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.model.token.Token;
 import com.github.sankowskiwojciech.courseslogin.service.login.LoginService;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
@@ -21,9 +22,9 @@ public class LoginController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("/{subdomainName}/login")
-    public Token login(@PathVariable("subdomainName") String subdomainName, @RequestBody LoginCredentials loginCredentials) {
+    public Token loginUserToSubdomain(@PathVariable("subdomainName") String subdomainName, @RequestBody LoginCredentials loginCredentials) {
         LoginCredentialsValidator.validateLoginCredentials(loginCredentials);
-        String subdomainEmailAddress = subdomainService.readSubdomainEmailAddressIfSubdomainExists(subdomainName);
-        return loginService.loginUserToSubdomain(subdomainEmailAddress, loginCredentials);
+        Subdomain subdomain = subdomainService.readSubdomainInformationIfSubdomainExists(subdomainName);
+        return loginService.loginUserToSubdomain(subdomain.getEmailAddress(), loginCredentials);
     }
 }
