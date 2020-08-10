@@ -40,7 +40,7 @@ public class TokenEntity {
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
-    @Column(name = "RSA_PUBLIC_KEY", length = 212, nullable = false, unique = true, updatable = false)
+    @Column(name = "RSA_PUBLIC_KEY", length = 212, nullable = false, updatable = false)
     private String rsaPublicKey;
 
     @Column(name = "CREATION_DATE_TIME", nullable = false, updatable = false)
