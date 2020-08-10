@@ -26,4 +26,17 @@ public class TokenEntityStub {
                 .expirationDateTime(LocalDateTime.now().plusHours(1))
                 .build();
     }
+
+    public static TokenEntity create(String userEmailAddress, LocalDateTime expirationDateTime, LocalDateTime revocationDateTime) {
+        return TokenEntity.builder()
+                .tokenId(UUID.randomUUID().toString())
+                .tokenValue(TOKEN_VALUE_STUB)
+                .userEmailAddress(userEmailAddress)
+                .accountType(AccountType.TUTOR)
+                .rsaPublicKey(RSA_PUBLIC_KEY_STUB)
+                .creationDateTime(expirationDateTime.minusHours(1))
+                .expirationDateTime(expirationDateTime)
+                .revocationDateTime(revocationDateTime)
+                .build();
+    }
 }
