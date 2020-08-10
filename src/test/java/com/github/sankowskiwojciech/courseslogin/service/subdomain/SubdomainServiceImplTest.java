@@ -7,7 +7,7 @@ import com.github.sankowskiwojciech.courseslogin.model.db.access.SubdomainUserAc
 import com.github.sankowskiwojciech.courseslogin.model.db.organization.OrganizationEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.SubdomainNotFoundException;
-import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToLoginToSubdomainException;
+import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToAccessSubdomainException;
 import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.stub.OrganizationEntityStub;
 import com.github.sankowskiwojciech.courseslogin.stub.TutorEntityStub;
@@ -89,8 +89,8 @@ public class SubdomainServiceImplTest {
         verify(tutorRepositoryMock).findByAlias(eq(subdomainName));
     }
 
-    @Test(expected = UserNotAllowedToLoginToSubdomainException.class)
-    public void shouldThrowUserNotAllowedToLoginToSubdomainExceptionWhenUserIsNotAllowedToLoginToGivenSubdomain() {
+    @Test(expected = UserNotAllowedToAccessSubdomainException.class)
+    public void shouldThrowUserNotAllowedToAccessSubdomainExceptionWhenUserIsNotAllowedToLoginToGivenSubdomain() {
         //given
         String subdomainEmaillAddress = ORGANIZATION_EMAIL_ADDRESS_STUB;
         String userEmailAddress = TUTOR_EMAIL_ADDRESS_STUB;
@@ -100,7 +100,7 @@ public class SubdomainServiceImplTest {
         //when
         try {
             testee.validateIfUserIsAllowedToLoginToSubdomain(subdomainEmaillAddress, userEmailAddress);
-        } catch (UserNotAllowedToLoginToSubdomainException e) {
+        } catch (UserNotAllowedToAccessSubdomainException e) {
 
             //then exception is thrown
             verify(subdomainUserAccessRepositoryMock).existsById(any(SubdomainUserAccessEntityId.class));

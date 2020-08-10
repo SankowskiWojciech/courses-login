@@ -7,7 +7,7 @@ import com.github.sankowskiwojciech.courseslogin.model.db.access.SubdomainUserAc
 import com.github.sankowskiwojciech.courseslogin.model.db.organization.OrganizationEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.SubdomainNotFoundException;
-import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToLoginToSubdomainException;
+import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToAccessSubdomainException;
 import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer.OrganizationEntityToSubdomain;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer.TutorEntityToSubdomain;
@@ -40,7 +40,7 @@ public class SubdomainServiceImpl implements SubdomainService {
     @Override
     public void validateIfUserIsAllowedToLoginToSubdomain(String subdomainEmailAddress, String userEmailAddress) {
         if (!subdomainUserAccessRepository.existsById(new SubdomainUserAccessEntityId(subdomainEmailAddress, userEmailAddress))) {
-            throw new UserNotAllowedToLoginToSubdomainException();
+            throw new UserNotAllowedToAccessSubdomainException();
         }
     }
 }
