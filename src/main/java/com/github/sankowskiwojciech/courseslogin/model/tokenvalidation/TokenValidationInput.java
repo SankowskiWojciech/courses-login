@@ -6,6 +6,5 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class TokenValidationInput {
-    private String userEmailAddress;
     private String tokenValue;
 }

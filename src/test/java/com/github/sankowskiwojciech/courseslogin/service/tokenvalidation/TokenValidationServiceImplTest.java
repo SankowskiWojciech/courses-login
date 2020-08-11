@@ -13,7 +13,6 @@ import org.mockito.Mockito;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ORGANIZATION_EMAIL_ADDRESS_STUB;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -47,28 +46,10 @@ public class TokenValidationServiceImplTest {
     }
 
     @Test(expected = InvalidTokenException.class)
-    public void shouldThrowInvalidTokenExceptionWhenTokenIsNotIssuedForProvidedUser() {
-        //given
-        TokenValidationInput tokenValidationInputStub = TokenValidationInputStub.create();
-        TokenEntity tokenEntityStub = TokenEntityStub.create(ORGANIZATION_EMAIL_ADDRESS_STUB, LocalDateTime.now().plusHours(1), null);
-        when(tokenRepositoryMock.findByTokenValue(eq(tokenValidationInputStub.getTokenValue()))).thenReturn(Optional.of(tokenEntityStub));
-
-        //when
-        try {
-            testee.validateToken(tokenValidationInputStub);
-        } catch (InvalidTokenException e) {
-
-            //then exception is thrown
-            verify(tokenRepositoryMock).findByTokenValue(eq(tokenValidationInputStub.getTokenValue()));
-            throw e;
-        }
-    }
-
-    @Test(expected = InvalidTokenException.class)
     public void shouldThrowInvalidTokenExceptionWhenTokenIsRevoked() {
         //given
         TokenValidationInput tokenValidationInputStub = TokenValidationInputStub.create();
-        TokenEntity tokenEntityStub = TokenEntityStub.create(tokenValidationInputStub.getUserEmailAddress(), LocalDateTime.now().plusHours(1), LocalDateTime.now());
+        TokenEntity tokenEntityStub = TokenEntityStub.create(LocalDateTime.now().plusHours(1), LocalDateTime.now());
         when(tokenRepositoryMock.findByTokenValue(eq(tokenValidationInputStub.getTokenValue()))).thenReturn(Optional.of(tokenEntityStub));
 
         //when
@@ -86,7 +67,7 @@ public class TokenValidationServiceImplTest {
     public void shouldThrowInvalidTokenExceptionWhenTokenIsExpired() {
         //given
         TokenValidationInput tokenValidationInputStub = TokenValidationInputStub.create();
-        TokenEntity tokenEntityStub = TokenEntityStub.create(tokenValidationInputStub.getUserEmailAddress(), LocalDateTime.now().minusHours(1), null);
+        TokenEntity tokenEntityStub = TokenEntityStub.create(LocalDateTime.now().minusHours(1), null);
         when(tokenRepositoryMock.findByTokenValue(eq(tokenValidationInputStub.getTokenValue()))).thenReturn(Optional.of(tokenEntityStub));
 
         //when
@@ -104,7 +85,7 @@ public class TokenValidationServiceImplTest {
     public void shouldDoNothingWhenTokenIsValid() {
         //given
         TokenValidationInput tokenValidationInputStub = TokenValidationInputStub.create();
-        TokenEntity tokenEntityStub = TokenEntityStub.create(tokenValidationInputStub.getUserEmailAddress(), LocalDateTime.now().plusHours(1), null);
+        TokenEntity tokenEntityStub = TokenEntityStub.create(LocalDateTime.now().plusHours(1), null);
         when(tokenRepositoryMock.findByTokenValue(eq(tokenValidationInputStub.getTokenValue()))).thenReturn(Optional.of(tokenEntityStub));
 
         //when

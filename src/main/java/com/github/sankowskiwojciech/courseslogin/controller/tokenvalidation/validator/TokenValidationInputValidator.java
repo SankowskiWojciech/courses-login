@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 public class TokenValidationInputValidator {
 
     public static void validateTokenValidationInput(TokenValidationInput tokenValidationInput) {
-        if (tokenValidationInput == null || StringUtils.isBlank(tokenValidationInput.getUserEmailAddress()) || StringUtils.isBlank(tokenValidationInput.getTokenValue())) {
+        if (tokenValidationInput == null || StringUtils.isBlank(tokenValidationInput.getTokenValue())) {
             throw new InvalidRequestBodyException();
         }
     }

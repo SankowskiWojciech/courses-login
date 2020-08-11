@@ -20,17 +20,6 @@ public class TokenValidationInputValidatorTest {
     }
 
     @Test(expected = InvalidRequestBodyException.class)
-    public void shouldThrowInvalidRequestBodyExceptionhenTokenValidationInputIsMissingUserEmailAddress() {
-        //given
-        TokenValidationInput tokenValidationInputStub = TokenValidationInputStub.createWithUserEmailAddress(null);
-
-        //when
-        TokenValidationInputValidator.validateTokenValidationInput(tokenValidationInputStub);
-
-        //then exception is thrown
-    }
-
-    @Test(expected = InvalidRequestBodyException.class)
     public void shouldThrowInvalidRequestBodyExceptionhenTokenValidationInputIsMissingTokenValue() {
         //given
         TokenValidationInput tokenValidationInputStub = TokenValidationInputStub.createWithTokenValue(StringUtils.EMPTY);
