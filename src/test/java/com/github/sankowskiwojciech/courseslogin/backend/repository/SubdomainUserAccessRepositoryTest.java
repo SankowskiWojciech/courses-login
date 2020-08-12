@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.backend.repository;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.access.SubdomainUserAccessEntity;
+import com.github.sankowskiwojciech.courseslogin.model.db.subdomainuseraccess.SubdomainUserAccessEntity;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

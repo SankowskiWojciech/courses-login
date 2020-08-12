@@ -1,4 +1,4 @@
-package com.github.sankowskiwojciech.courseslogin.model.db.access;
+package com.github.sankowskiwojciech.courseslogin.model.db.subdomainuseraccess;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
