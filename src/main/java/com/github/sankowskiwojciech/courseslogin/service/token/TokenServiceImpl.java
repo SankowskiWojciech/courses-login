@@ -10,6 +10,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.KeyPair;
 
@@ -19,6 +20,7 @@ public class TokenServiceImpl implements TokenService {
 
     private final TokenRepository tokenRepository;
 
+    @Transactional
     @Override
     public Token generateToken(LoginCredentialsEntity loginCredentialsEntity) {
         KeyPair keyPair = Keys.keyPairFor(SignatureAlgorithm.ES512);
