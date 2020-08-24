@@ -21,7 +21,7 @@ public class LoginController {
     private final LoginService loginService;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping("/{subdomainName}/login")
+    @PostMapping("/subdomain/{subdomainName}/login")
     public Token loginUserToSubdomain(@PathVariable("subdomainName") String subdomainName, @RequestBody LoginCredentials loginCredentials) {
         LoginCredentialsValidator.validateLoginCredentials(loginCredentials);
         Subdomain subdomain = subdomainService.readSubdomainInformationIfSubdomainExists(subdomainName);

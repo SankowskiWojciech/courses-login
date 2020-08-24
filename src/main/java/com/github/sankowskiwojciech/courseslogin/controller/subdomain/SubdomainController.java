@@ -15,7 +15,7 @@ public class SubdomainController {
     private final SubdomainService subdomainService;
 
     @CrossOrigin(origins = "http://localhost:4200")
-    @GetMapping("/{subdomainName}")
+    @GetMapping("/subdomain/{subdomainName}")
     public Subdomain readSubdomainInformation(@PathVariable("subdomainName") String subdomainName) {
         return subdomainService.readSubdomainInformationIfSubdomainExists(subdomainName);
     }
