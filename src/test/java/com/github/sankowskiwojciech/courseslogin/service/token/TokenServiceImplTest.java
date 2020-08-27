@@ -3,7 +3,7 @@ package com.github.sankowskiwojciech.courseslogin.service.token;
 import com.github.sankowskiwojciech.courseslogin.backend.repository.TokenRepository;
 import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,13 +31,13 @@ public class TokenServiceImplTest {
         LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
 
         //when
-        Token token = testee.generateToken(loginCredentialsEntityStub);
+        TokenResponse tokenResponse = testee.generateToken(loginCredentialsEntityStub);
 
         //then
         verify(tokenRepositoryMock).save(any(TokenEntity.class));
 
-        assertNotNull(token);
-        assertNotNull(token.getTokenValue());
-        assertEquals(loginCredentialsEntityStub.getAccountType(), token.getAccountType());
+        assertNotNull(tokenResponse);
+        assertNotNull(tokenResponse.getTokenValue());
+        assertEquals(loginCredentialsEntityStub.getAccountType(), tokenResponse.getAccountType());
     }
 }

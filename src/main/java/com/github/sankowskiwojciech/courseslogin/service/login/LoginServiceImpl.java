@@ -4,7 +4,7 @@ import com.github.sankowskiwojciech.courseslogin.backend.repository.LoginCredent
 import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
@@ -21,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
     private final SubdomainService subdomainService;
 
     @Override
-    public Token loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest) {
+    public TokenResponse loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest) {
         LoginCredentialsEntity loginCredentialsEntity = readLoginCredentials(loginCredentialsFromRequest.getUserEmailAddress());
         subdomainService.validateIfUserIsAllowedToLoginToSubdomain(subdomainEmailAddress, loginCredentialsEntity.getUserEmailAddress());
         passwordService.validatePassword(loginCredentialsFromRequest.getPassword(), loginCredentialsEntity.getPasswordHash());

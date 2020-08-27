@@ -4,7 +4,7 @@ import com.github.sankowskiwojciech.courseslogin.backend.repository.LoginCredent
 import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
@@ -44,13 +44,13 @@ public class LoginServiceImplTest {
         String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
         LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
         LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
-        Token tokenStub = TokenStub.create();
+        TokenResponse tokenResponseStub = TokenStub.create();
 
         when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.of(loginCredentialsEntityStub));
-        when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub))).thenReturn(tokenStub);
+        when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub))).thenReturn(tokenResponseStub);
 
         //when
-        Token tokenResult = testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
+        TokenResponse tokenResponse = testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
 
         //then
         verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
@@ -58,8 +58,8 @@ public class LoginServiceImplTest {
         verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getPasswordHash()));
         verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub));
 
-        assertNotNull(tokenResult);
-        assertEquals(tokenResult, tokenStub);
+        assertNotNull(tokenResponse);
+        assertEquals(tokenResponse, tokenResponseStub);
     }
 
     @Test(expected = InvalidCredentialsException.class)

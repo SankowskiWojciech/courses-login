@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
 import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 import com.github.sankowskiwojciech.courseslogin.stub.KeyPairStub;
 import com.github.sankowskiwojciech.courseslogin.stub.TokenEntityStub;
 import com.github.sankowskiwojciech.courseslogin.util.DateToLocalDateTime;
@@ -16,9 +16,9 @@ import java.security.PublicKey;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TokenEntityAndPrivateKeyToTokenTest {
+public class TokenEntityAndPrivateKeyToTokenResponseTest {
 
-    private final TokenEntityAndPrivateKeyToToken testee = TokenEntityAndPrivateKeyToToken.getInstance();
+    private final TokenEntityAndPrivateKeyToTokenResponse testee = TokenEntityAndPrivateKeyToTokenResponse.getInstance();
 
     @Test
     public void shouldTransformCorrectly() {
@@ -27,13 +27,13 @@ public class TokenEntityAndPrivateKeyToTokenTest {
         KeyPair keyPair = KeyPairStub.create();
 
         //when
-        Token token = testee.apply(tokenEntityStub, keyPair.getPrivate());
+        TokenResponse tokenResponse = testee.apply(tokenEntityStub, keyPair.getPrivate());
 
         //then
-        assertNotNull(token);
-        assertNotNull(token.getTokenValue());
-        assertEquals(tokenEntityStub.getAccountType(), token.getAccountType());
-        Jws<Claims> parsedJws = parseJws(token.getTokenValue(), keyPair.getPublic());
+        assertNotNull(tokenResponse);
+        assertNotNull(tokenResponse.getTokenValue());
+        assertEquals(tokenEntityStub.getAccountType(), tokenResponse.getAccountType());
+        Jws<Claims> parsedJws = parseJws(tokenResponse.getTokenValue(), keyPair.getPublic());
         assertParsedJws(parsedJws.getBody(), tokenEntityStub);
     }
 

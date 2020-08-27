@@ -8,7 +8,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 @EqualsAndHashCode
-public class Token {
+public class TokenResponse {
     private final String tokenValue;
     private final AccountType accountType;
 }

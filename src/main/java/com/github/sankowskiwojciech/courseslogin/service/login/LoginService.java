@@ -1,9 +1,9 @@
 package com.github.sankowskiwojciech.courseslogin.service.login;
 
 import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.token.Token;
+import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 
 public interface LoginService {
 
-    Token loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest);
+    TokenResponse loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest);
 }
