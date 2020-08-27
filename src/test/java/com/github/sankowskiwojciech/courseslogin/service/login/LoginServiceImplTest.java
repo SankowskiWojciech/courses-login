@@ -10,7 +10,7 @@ import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainServ
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
 import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
 import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsStub;
-import com.github.sankowskiwojciech.courseslogin.stub.TokenStub;
+import com.github.sankowskiwojciech.courseslogin.stub.TokenResponseStub;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -44,7 +44,7 @@ public class LoginServiceImplTest {
         String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
         LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
         LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
-        TokenResponse tokenResponseStub = TokenStub.create();
+        TokenResponse tokenResponseStub = TokenResponseStub.create();
 
         when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.of(loginCredentialsEntityStub));
         when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub))).thenReturn(tokenResponseStub);

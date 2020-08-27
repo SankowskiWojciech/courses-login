@@ -5,12 +5,14 @@ import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.TOKEN_STUB;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class TokenStub {
+public class TokenResponseStub {
 
     public static TokenResponse create() {
-        return new TokenResponse(TOKEN_STUB, AccountType.TUTOR);
+        return new TokenResponse(TOKEN_STUB, AccountType.TUTOR, LocalDateTime.now().plusHours(1));
     }
 }

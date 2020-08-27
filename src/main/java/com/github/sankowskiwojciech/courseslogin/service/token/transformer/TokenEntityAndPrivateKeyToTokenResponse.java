@@ -24,7 +24,7 @@ public class TokenEntityAndPrivateKeyToTokenResponse implements BiFunction<Token
                 .setExpiration(LocalDateTimeToDate.getInstance().apply(tokenEntity.getExpirationDateTime()))
                 .signWith(privateKey)
                 .compact();
-        return new TokenResponse(jws, tokenEntity.getAccountType());
+        return new TokenResponse(jws, tokenEntity.getAccountType(), tokenEntity.getExpirationDateTime());
     }
 
     public static TokenEntityAndPrivateKeyToTokenResponse getInstance() {
