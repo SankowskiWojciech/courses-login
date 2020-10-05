@@ -1,11 +1,11 @@
 package com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.organization.OrganizationEntity;
-import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
+import com.github.sankowskiwojciech.coursescorelib.model.db.organization.OrganizationEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.stub.OrganizationEntityStub;
 import org.junit.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class OrganizationEntityToSubdomainTest {

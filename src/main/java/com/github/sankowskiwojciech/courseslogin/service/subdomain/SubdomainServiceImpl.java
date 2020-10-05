@@ -1,14 +1,14 @@
 package com.github.sankowskiwojciech.courseslogin.service.subdomain;
 
-import com.github.sankowskiwojciech.courseslogin.backend.repository.OrganizationRepository;
-import com.github.sankowskiwojciech.courseslogin.backend.repository.SubdomainUserAccessRepository;
-import com.github.sankowskiwojciech.courseslogin.backend.repository.TutorRepository;
-import com.github.sankowskiwojciech.courseslogin.model.db.organization.OrganizationEntity;
-import com.github.sankowskiwojciech.courseslogin.model.db.subdomainuseraccess.SubdomainUserAccessEntityId;
-import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
-import com.github.sankowskiwojciech.courseslogin.model.exception.SubdomainNotFoundException;
-import com.github.sankowskiwojciech.courseslogin.model.exception.UserNotAllowedToAccessSubdomainException;
-import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
+import com.github.sankowskiwojciech.coursescorelib.backend.repository.OrganizationRepository;
+import com.github.sankowskiwojciech.coursescorelib.backend.repository.SubdomainUserAccessRepository;
+import com.github.sankowskiwojciech.coursescorelib.backend.repository.TutorRepository;
+import com.github.sankowskiwojciech.coursescorelib.model.db.organization.OrganizationEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.subdomainuseraccess.SubdomainUserAccessEntityId;
+import com.github.sankowskiwojciech.coursescorelib.model.db.tutor.TutorEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.exception.SubdomainNotFoundException;
+import com.github.sankowskiwojciech.coursescorelib.model.exception.permission.UserNotAllowedToAccessSubdomainException;
+import com.github.sankowskiwojciech.coursescorelib.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer.OrganizationEntityToSubdomain;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer.TutorEntityToSubdomain;
 import lombok.AllArgsConstructor;

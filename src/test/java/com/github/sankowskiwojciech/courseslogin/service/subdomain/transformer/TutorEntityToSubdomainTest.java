@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.service.subdomain.transformer;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
-import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
+import com.github.sankowskiwojciech.coursescorelib.model.db.tutor.TutorEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.stub.TutorEntityStub;
 import org.junit.Test;
 

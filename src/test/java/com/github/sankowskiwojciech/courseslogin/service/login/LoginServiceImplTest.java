@@ -1,10 +1,10 @@
 package com.github.sankowskiwojciech.courseslogin.service.login;
 
-import com.github.sankowskiwojciech.courseslogin.backend.repository.LoginCredentialsRepository;
-import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
-import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
-import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.backend.repository.LoginCredentialsRepository;
+import com.github.sankowskiwojciech.coursescorelib.model.db.login.LoginCredentialsEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.model.exception.InvalidCredentialsException;
+import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
 import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;

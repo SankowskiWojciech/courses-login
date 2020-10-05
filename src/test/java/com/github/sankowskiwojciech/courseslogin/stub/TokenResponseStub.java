@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
-import com.github.sankowskiwojciech.courseslogin.model.account.AccountType;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.model.account.AccountType;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

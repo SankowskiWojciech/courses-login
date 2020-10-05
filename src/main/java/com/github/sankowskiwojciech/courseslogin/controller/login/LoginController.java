@@ -1,9 +1,9 @@
 package com.github.sankowskiwojciech.courseslogin.controller.login;
 
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
+import com.github.sankowskiwojciech.coursescorelib.model.subdomain.Subdomain;
 import com.github.sankowskiwojciech.courseslogin.controller.login.validator.LoginCredentialsValidator;
-import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.subdomain.Subdomain;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
 import com.github.sankowskiwojciech.courseslogin.service.login.LoginService;
 import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
 import lombok.AllArgsConstructor;

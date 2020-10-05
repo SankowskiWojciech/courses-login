@@ -1,9 +1,9 @@
 package com.github.sankowskiwojciech.courseslogin.service.token;
 
-import com.github.sankowskiwojciech.courseslogin.backend.repository.TokenRepository;
-import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
-import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.backend.repository.TokenRepository;
+import com.github.sankowskiwojciech.coursescorelib.model.db.login.LoginCredentialsEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
 import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
-import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
+import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

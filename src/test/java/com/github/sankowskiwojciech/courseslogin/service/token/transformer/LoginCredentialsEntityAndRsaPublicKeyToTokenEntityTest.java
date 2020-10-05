@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.login.LoginCredentialsEntity;
-import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.login.LoginCredentialsEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
 import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
 import org.junit.Test;
 

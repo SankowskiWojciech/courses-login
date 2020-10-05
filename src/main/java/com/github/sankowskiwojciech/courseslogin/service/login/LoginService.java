@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.service.login;
 
-import com.github.sankowskiwojciech.courseslogin.model.login.LoginCredentials;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
 
 public interface LoginService {
 

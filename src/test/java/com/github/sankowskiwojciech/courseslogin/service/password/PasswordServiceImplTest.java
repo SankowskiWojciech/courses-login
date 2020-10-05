@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.service.password;
 
-import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
+import com.github.sankowskiwojciech.coursescorelib.model.exception.InvalidCredentialsException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

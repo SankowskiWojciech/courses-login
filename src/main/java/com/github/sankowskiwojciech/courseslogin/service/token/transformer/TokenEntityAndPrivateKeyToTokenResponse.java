@@ -1,8 +1,8 @@
 package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
-import com.github.sankowskiwojciech.courseslogin.util.LocalDateTimeToDate;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.util.LocalDateTimeToDate;
 import io.jsonwebtoken.Jwts;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

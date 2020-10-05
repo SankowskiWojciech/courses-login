@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.stub;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.tutor.TutorEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.tutor.TutorEntity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

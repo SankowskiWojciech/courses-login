@@ -1,10 +1,10 @@
 package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
-import com.github.sankowskiwojciech.courseslogin.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.model.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
+import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
+import com.github.sankowskiwojciech.coursescorelib.util.DateToLocalDateTime;
 import com.github.sankowskiwojciech.courseslogin.stub.KeyPairStub;
 import com.github.sankowskiwojciech.courseslogin.stub.TokenEntityStub;
-import com.github.sankowskiwojciech.courseslogin.util.DateToLocalDateTime;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

@@ -1,6 +1,6 @@
 package com.github.sankowskiwojciech.courseslogin.service.password;
 
-import com.github.sankowskiwojciech.courseslogin.model.exception.InvalidCredentialsException;
+import com.github.sankowskiwojciech.coursescorelib.model.exception.InvalidCredentialsException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

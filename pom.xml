@@ -16,12 +16,20 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+
+        <courses-core-lib.version>1.0-SNAPSHOT</courses-core-lib.version>
+
+        <bcprov-jdk15on.version>1.60</bcprov-jdk15on.version>
         <commons-lang3.version>3.10</commons-lang3.version>
         <jjwt.version>0.11.2</jjwt.version>
-        <bcprov-jdk15on.version>1.60</bcprov-jdk15on.version>
 	</properties>
 
 	<dependencies>
+        <dependency>
+            <groupId>com.github.sankowskiwojciech</groupId>
+            <artifactId>courses-core-lib</artifactId>
+            <version>${courses-core-lib.version}</version>
+        </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
