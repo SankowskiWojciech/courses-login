@@ -1,7 +1,7 @@
 package com.github.sankowskiwojciech.courseslogin.controller.subdomain;
 
 import com.github.sankowskiwojciech.coursescorelib.model.subdomain.Subdomain;
-import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
+import com.github.sankowskiwojciech.coursescorelib.service.subdomain.SubdomainService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;

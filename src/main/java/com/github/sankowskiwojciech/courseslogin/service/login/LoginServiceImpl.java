@@ -5,8 +5,8 @@ import com.github.sankowskiwojciech.coursescorelib.model.db.login.LoginCredentia
 import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
 import com.github.sankowskiwojciech.coursescorelib.model.exception.InvalidCredentialsException;
 import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
+import com.github.sankowskiwojciech.coursescorelib.service.subdomain.SubdomainService;
 import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
-import com.github.sankowskiwojciech.courseslogin.service.subdomain.SubdomainService;
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
