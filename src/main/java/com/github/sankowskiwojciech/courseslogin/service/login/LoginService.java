@@ -5,5 +5,5 @@ import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
 
 public interface LoginService {
 
-    TokenResponse loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest);
+    TokenResponse loginUserToSubdomain(String subdomainAlias, LoginCredentials loginCredentialsFromRequest);
 }

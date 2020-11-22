@@ -17,7 +17,7 @@ import org.mockito.Mockito;
 
 import java.util.Optional;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ORGANIZATION_EMAIL_ADDRESS_STUB;
+import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ORGANIZATION_ALIAS_STUB;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.eq;
@@ -41,7 +41,7 @@ public class LoginServiceImplTest {
     @Test
     public void shouldLoginUserCorrectly() {
         //given
-        String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
+        String subdomainAliasStub = ORGANIZATION_ALIAS_STUB;
         LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
         LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
         TokenResponse tokenResponseStub = TokenResponseStub.create();
@@ -50,11 +50,11 @@ public class LoginServiceImplTest {
         when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub))).thenReturn(tokenResponseStub);
 
         //when
-        TokenResponse tokenResponse = testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
+        TokenResponse tokenResponse = testee.loginUserToSubdomain(subdomainAliasStub, loginCredentialsStub);
 
         //then
         verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
-        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainEmailAddressStub), eq(loginCredentialsEntityStub.getUserEmailAddress()));
+        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainAliasStub), eq(loginCredentialsEntityStub.getUserEmailAddress()));
         verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getPasswordHash()));
         verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub));
 
@@ -65,14 +65,14 @@ public class LoginServiceImplTest {
     @Test(expected = InvalidCredentialsException.class)
     public void shouldThrowInvalidCredentialsExceptionWhenUserWithGivenEmailAddressDoesNotExist() {
         //given
-        String subdomainEmailAddressStub = ORGANIZATION_EMAIL_ADDRESS_STUB;
+        String subdomainAliasStub = ORGANIZATION_ALIAS_STUB;
         LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
 
         when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.empty());
 
         //when
         try {
-            testee.loginUserToSubdomain(subdomainEmailAddressStub, loginCredentialsStub);
+            testee.loginUserToSubdomain(subdomainAliasStub, loginCredentialsStub);
         } catch (InvalidCredentialsException e) {
 
             //then exception is thrown

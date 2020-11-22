@@ -21,9 +21,9 @@ public class LoginServiceImpl implements LoginService {
     private final SubdomainService subdomainService;
 
     @Override
-    public TokenResponse loginUserToSubdomain(String subdomainEmailAddress, LoginCredentials loginCredentialsFromRequest) {
+    public TokenResponse loginUserToSubdomain(String subdomainAlias, LoginCredentials loginCredentialsFromRequest) {
         LoginCredentialsEntity loginCredentialsEntity = readLoginCredentials(loginCredentialsFromRequest.getUserEmailAddress());
-        subdomainService.validateIfUserIsAllowedToLoginToSubdomain(subdomainEmailAddress, loginCredentialsEntity.getUserEmailAddress());
+        subdomainService.validateIfUserIsAllowedToLoginToSubdomain(subdomainAlias, loginCredentialsEntity.getUserEmailAddress());
         passwordService.validatePassword(loginCredentialsFromRequest.getPassword(), loginCredentialsEntity.getPasswordHash());
         return tokenService.generateToken(loginCredentialsEntity);
     }
