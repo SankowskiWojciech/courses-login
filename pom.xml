@@ -3,27 +3,24 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.1</version>
         <relativePath/>
-	</parent>
+    </parent>
 	<groupId>com.github.sankowskiwojciech</groupId>
 	<artifactId>courses-login</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>courses-login</name>
-	<description>Demo project for Spring Boot</description>
 
-	<properties>
-		<java.version>1.8</java.version>
+    <properties>
+        <java.version>15</java.version>
 
         <courses-core-lib.version>1.0-SNAPSHOT</courses-core-lib.version>
 
         <bcprov-jdk15on.version>1.60</bcprov-jdk15on.version>
-        <commons-lang3.version>3.10</commons-lang3.version>
         <jjwt.version>0.11.2</jjwt.version>
-        <lombok.version>1.18.16</lombok.version>
-	</properties>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -34,7 +31,6 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,13 +48,6 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>${commons-lang3.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -107,6 +96,11 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

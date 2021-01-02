@@ -4,13 +4,17 @@ import com.github.sankowskiwojciech.coursescorelib.model.exception.InvalidCreden
 import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.apache.commons.lang3.StringUtils;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginCredentialsValidator {
 
     public static void validateLoginCredentials(LoginCredentials loginCredentials) {
-        if (loginCredentials == null || StringUtils.isBlank(loginCredentials.getUserEmailAddress()) || StringUtils.isBlank(loginCredentials.getPassword())) {
+        if (loginCredentials == null
+                || loginCredentials.getUserEmailAddress() == null
+                || loginCredentials.getPassword() == null
+                || loginCredentials.getUserEmailAddress().isBlank()
+                || loginCredentials.getPassword().isBlank()
+        ) {
             throw new InvalidCredentialsException();
         }
     }
