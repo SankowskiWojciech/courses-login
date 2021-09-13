@@ -10,7 +10,6 @@ import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWO
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class LoginCredentialsEntityStub {
-
     public static LoginCredentialsEntity create() {
         return new LoginCredentialsEntity(EMAIL_ADDRESS_STUB, PASSWORD_HASH_STUB, AccountType.TUTOR);
     }

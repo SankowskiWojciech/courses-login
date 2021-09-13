@@ -11,7 +11,6 @@ import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.TOKEN_
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TokenResponseStub {
-
     public static TokenResponse create() {
         return new TokenResponse(TOKEN_STUB, AccountType.TUTOR, LocalDateTime.now().plusHours(1));
     }
