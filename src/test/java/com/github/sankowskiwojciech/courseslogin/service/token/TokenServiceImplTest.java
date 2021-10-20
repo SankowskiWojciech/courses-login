@@ -4,7 +4,7 @@ import com.github.sankowskiwojciech.coursescorelib.backend.repository.TokenRepos
 import com.github.sankowskiwojciech.coursescorelib.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
 import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
-import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
+import com.github.sankowskiwojciech.coursestestlib.stub.LoginCredentialsEntityStub;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -16,7 +16,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class TokenServiceImplTest {
-
     private final TokenRepository tokenRepositoryMock = mock(TokenRepository.class);
     private final TokenService testee = new TokenServiceImpl(tokenRepositoryMock);
 

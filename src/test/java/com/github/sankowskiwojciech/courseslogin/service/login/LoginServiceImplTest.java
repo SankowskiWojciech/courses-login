@@ -8,25 +8,23 @@ import com.github.sankowskiwojciech.coursescorelib.model.login.LoginCredentials;
 import com.github.sankowskiwojciech.coursescorelib.service.subdomain.SubdomainService;
 import com.github.sankowskiwojciech.courseslogin.service.password.PasswordService;
 import com.github.sankowskiwojciech.courseslogin.service.token.TokenService;
-import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
-import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsStub;
-import com.github.sankowskiwojciech.courseslogin.stub.TokenResponseStub;
+import com.github.sankowskiwojciech.coursestestlib.stub.LoginCredentialsEntityStub;
+import com.github.sankowskiwojciech.coursestestlib.stub.LoginCredentialsStub;
+import com.github.sankowskiwojciech.coursestestlib.stub.TokenResponseStub;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
 import java.util.Optional;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.ORGANIZATION_ALIAS_STUB;
+import static com.github.sankowskiwojciech.coursestestlib.DefaultTestValues.ORGANIZATION_ALIAS_STUB;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class LoginServiceImplTest {
-
     private final LoginCredentialsRepository loginCredentialsRepositoryMock = mock(LoginCredentialsRepository.class);
     private final SubdomainService subdomainServiceMock = mock(SubdomainService.class);
     private final PasswordService passwordServiceMock = mock(PasswordService.class);
@@ -46,17 +44,17 @@ public class LoginServiceImplTest {
         LoginCredentialsEntity loginCredentialsEntityStub = LoginCredentialsEntityStub.create();
         TokenResponse tokenResponseStub = TokenResponseStub.create();
 
-        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.of(loginCredentialsEntityStub));
-        when(tokenServiceMock.generateToken(eq(loginCredentialsEntityStub))).thenReturn(tokenResponseStub);
+        when(loginCredentialsRepositoryMock.findById(loginCredentialsStub.getUserEmailAddress())).thenReturn(Optional.of(loginCredentialsEntityStub));
+        when(tokenServiceMock.generateToken(loginCredentialsEntityStub)).thenReturn(tokenResponseStub);
 
         //when
         TokenResponse tokenResponse = testee.loginUserToSubdomain(subdomainAliasStub, loginCredentialsStub);
 
         //then
-        verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
-        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(eq(subdomainAliasStub), eq(loginCredentialsEntityStub.getUserEmailAddress()));
-        verify(passwordServiceMock).validatePassword(eq(loginCredentialsStub.getPassword()), eq(loginCredentialsEntityStub.getPasswordHash()));
-        verify(tokenServiceMock).generateToken(eq(loginCredentialsEntityStub));
+        verify(loginCredentialsRepositoryMock).findById(loginCredentialsStub.getUserEmailAddress());
+        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(subdomainAliasStub, loginCredentialsEntityStub.getUserEmailAddress());
+        verify(passwordServiceMock).validatePassword(loginCredentialsStub.getPassword(), loginCredentialsEntityStub.getPasswordHash());
+        verify(tokenServiceMock).generateToken(loginCredentialsEntityStub);
 
         assertNotNull(tokenResponse);
         assertEquals(tokenResponse, tokenResponseStub);
@@ -68,7 +66,7 @@ public class LoginServiceImplTest {
         String subdomainAliasStub = ORGANIZATION_ALIAS_STUB;
         LoginCredentials loginCredentialsStub = LoginCredentialsStub.create();
 
-        when(loginCredentialsRepositoryMock.findById(eq(loginCredentialsStub.getUserEmailAddress()))).thenReturn(Optional.empty());
+        when(loginCredentialsRepositoryMock.findById(loginCredentialsStub.getUserEmailAddress())).thenReturn(Optional.empty());
 
         //when
         try {
@@ -76,7 +74,7 @@ public class LoginServiceImplTest {
         } catch (InvalidCredentialsException e) {
 
             //then exception is thrown
-            verify(loginCredentialsRepositoryMock).findById(eq(loginCredentialsStub.getUserEmailAddress()));
+            verify(loginCredentialsRepositoryMock).findById(loginCredentialsStub.getUserEmailAddress());
             throw e;
         }
     }

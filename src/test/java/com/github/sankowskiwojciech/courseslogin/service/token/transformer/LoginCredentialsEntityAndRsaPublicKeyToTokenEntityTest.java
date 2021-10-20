@@ -2,19 +2,18 @@ package com.github.sankowskiwojciech.courseslogin.service.token.transformer;
 
 import com.github.sankowskiwojciech.coursescorelib.model.db.login.LoginCredentialsEntity;
 import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
-import com.github.sankowskiwojciech.courseslogin.stub.LoginCredentialsEntityStub;
+import com.github.sankowskiwojciech.coursestestlib.stub.LoginCredentialsEntityStub;
 import org.junit.Test;
 
 import java.time.Duration;
 import java.util.Base64;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.RSA_PUBLIC_KEY_BYTE_ARRAY_STUB;
+import static com.github.sankowskiwojciech.coursestestlib.DefaultTestValues.RSA_PUBLIC_KEY_BYTE_ARRAY_STUB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class LoginCredentialsEntityAndRsaPublicKeyToTokenEntityTest {
-
     private final LoginCredentialsEntityAndRsaPublicKeyToTokenEntity testee = LoginCredentialsEntityAndRsaPublicKeyToTokenEntity.getInstance();
 
     @Test

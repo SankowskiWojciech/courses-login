@@ -8,18 +8,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.UUID;
 
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.INVALID_PASSWORD_STUB;
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWORD_HASH_STUB;
-import static com.github.sankowskiwojciech.courseslogin.DefaultTestValues.PASSWORD_STUB;
+import static com.github.sankowskiwojciech.coursestestlib.DefaultTestValues.INVALID_PASSWORD_STUB;
+import static com.github.sankowskiwojciech.coursestestlib.DefaultTestValues.PASSWORD_HASH_STUB;
+import static com.github.sankowskiwojciech.coursestestlib.DefaultTestValues.PASSWORD_STUB;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class PasswordServiceImplTest {
-
     private final PasswordEncoder passwordEncoderMock = mock(PasswordEncoder.class);
     private final PasswordService testee = new PasswordServiceImpl(passwordEncoderMock);
 
@@ -33,13 +31,13 @@ public class PasswordServiceImplTest {
         //given
         String passwordStub = UUID.randomUUID().toString();
         String passwordHashStub = UUID.randomUUID().toString();
-        when(passwordEncoderMock.encode(eq(passwordStub))).thenReturn(passwordHashStub);
+        when(passwordEncoderMock.encode(passwordStub)).thenReturn(passwordHashStub);
 
         //when
         String encodedPasswordResult = testee.createPasswordHash(passwordStub);
 
         //then
-        verify(passwordEncoderMock).encode(eq(passwordStub));
+        verify(passwordEncoderMock).encode(passwordStub);
         assertEquals(passwordHashStub, encodedPasswordResult);
     }
 

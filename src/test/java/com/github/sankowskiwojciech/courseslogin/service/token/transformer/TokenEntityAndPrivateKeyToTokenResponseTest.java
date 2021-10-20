@@ -4,7 +4,7 @@ import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenEntity;
 import com.github.sankowskiwojciech.coursescorelib.model.db.token.TokenResponse;
 import com.github.sankowskiwojciech.coursescorelib.util.DateToLocalDateTime;
 import com.github.sankowskiwojciech.courseslogin.stub.KeyPairStub;
-import com.github.sankowskiwojciech.courseslogin.stub.TokenEntityStub;
+import com.github.sankowskiwojciech.coursestestlib.stub.TokenEntityStub;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TokenEntityAndPrivateKeyToTokenResponseTest {
-
     private final TokenEntityAndPrivateKeyToTokenResponse testee = TokenEntityAndPrivateKeyToTokenResponse.getInstance();
 
     @Test
