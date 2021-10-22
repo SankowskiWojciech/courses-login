@@ -52,7 +52,7 @@ public class LoginServiceImplTest {
 
         //then
         verify(loginCredentialsRepositoryMock).findById(loginCredentialsStub.getUserEmailAddress());
-        verify(subdomainServiceMock).validateIfUserIsAllowedToLoginToSubdomain(subdomainAliasStub, loginCredentialsEntityStub.getUserEmailAddress());
+        verify(subdomainServiceMock).validateIfUserHasAccessToSubdomain(subdomainAliasStub, loginCredentialsEntityStub.getUserEmailAddress());
         verify(passwordServiceMock).validatePassword(loginCredentialsStub.getPassword(), loginCredentialsEntityStub.getPasswordHash());
         verify(tokenServiceMock).generateToken(loginCredentialsEntityStub);
 
